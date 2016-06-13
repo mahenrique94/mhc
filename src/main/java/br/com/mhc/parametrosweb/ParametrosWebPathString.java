@@ -9,8 +9,7 @@ public class ParametrosWebPathString implements ParametrosWebPath {
 	@Override
 	public Expression<String> criaPath(Root<?> root, String field) {
 		// TODO Auto-generated method stub
-		Path<String> path = root.<String> get(field);
-		return path;
+		return root.<String> get(field);
 	}
 	
 }

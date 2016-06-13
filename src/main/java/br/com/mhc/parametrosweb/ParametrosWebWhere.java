@@ -13,10 +13,10 @@ public class ParametrosWebWhere {
 	public static CriteriaQuery<?> build(ParametrosWeb parametrosWeb, CriteriaBuilder criteriaBuilder, CriteriaQuery<?> query, Root<?> root) {
 		if (parametrosWeb.getHashMapWhere() != null && !parametrosWeb.getHashMapWhere().isEmpty()) {
 			List<Predicate> predicates = new ArrayList<Predicate>();
-			for (int i = 0; i < parametrosWeb.getHashMapWhere().size(); i++) {
-				ParametrosWebPredicate parametrosWebPredicate = ParametrosWebPredicateFactory.find(parametrosWeb.getHashMapWhere().get(parametrosWeb.getParametros().get(i)));
-				predicates.add(parametrosWebPredicate.build(criteriaBuilder, root, parametrosWeb.getObj(), parametrosWeb.getParametros().get(i)));
-			}
+			parametrosWeb.getParametros().forEach(parametro -> {
+				ParametrosWebPredicate parametrosWebPredicate = ParametrosWebPredicateFactory.find(parametrosWeb.getHashMapWhere().get(parametro));
+				predicates.add(parametrosWebPredicate.build(criteriaBuilder, root, parametrosWeb.getObj(), parametro));
+			});
 			query.where((Predicate[]) predicates.toArray(new Predicate[0]));
 		}
 		return query;

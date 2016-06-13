@@ -16,14 +16,12 @@ public class BuscaPessoa {
 	public static void main(String[] args) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
 		EntityManager em = factory.createEntityManager();
-		
-		ParametrosWebBuilder builder = new ParametrosWebBuilder();
-		Pessoa pessoa = new Pessoa("Matheus", 22, "F", Calendar.getInstance());
-		
 		em.getTransaction().begin();
 		
-		builder.from(Pessoa.class).where("nome : like, sexo : like", pessoa);
+		ParametrosWebBuilder builder = new ParametrosWebBuilder();
+		Pessoa pessoa = new Pessoa("Matheus", 22, "M", Calendar.getInstance());
 		
+		builder.from(Pessoa.class).where("nome : like", pessoa);
 		
 		TypedQuery<?> typedQuery = em.createQuery(builder.execute(em.getCriteriaBuilder()));
 		

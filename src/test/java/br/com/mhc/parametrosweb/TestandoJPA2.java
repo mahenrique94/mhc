@@ -26,7 +26,7 @@ public class TestandoJPA2 {
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Pessoa> query = builder.createQuery(Pessoa.class);
 		
-		Pessoa matheus = new Pessoa("Matheus", 22, "M", Calendar.getInstance());
+		Pessoa matheus = new Pessoa("Matheus", 15, "M", Calendar.getInstance());
 		
 		Root<Pessoa> root = query.from(Pessoa.class);
 		Path<String> nome = root.<String> get("nome");
@@ -34,7 +34,7 @@ public class TestandoJPA2 {
 		
 		List<Predicate> predicates = new ArrayList<Predicate>();
 		predicates.add(builder.like(nome, "%" + matheus.getNome() + "%"));
-//		predicates.add(builder.greaterThanOrEqualTo(idade, matheus.getIdade()));
+		predicates.add(builder.greaterThanOrEqualTo(idade, matheus.getIdade()));
 		
 		query.where((Predicate[]) predicates.toArray(new Predicate[0]));
 		
