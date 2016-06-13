@@ -47,8 +47,7 @@ public class ParametrosWebBuilder {
 	}
 	
 	public CriteriaQuery<?> execute(CriteriaBuilder criteriaBuilder) {
-		CriteriaQuery<?> query = ParametrosWebQuery.create(getParametrosWeb(), criteriaBuilder, (Class) getClazz());
-		return query;
+		return ParametrosWebQuery.create(getParametrosWeb(), criteriaBuilder, (Class) getClazz());
 	}
 	
 }
