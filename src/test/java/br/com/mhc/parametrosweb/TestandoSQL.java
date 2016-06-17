@@ -13,10 +13,8 @@ public class TestandoSQL {
 		Pessoa matheus = new Pessoa("Matheus", 22, "M", Calendar.getInstance());
 		ParametrosWebBuilder builder = new ParametrosWebBuilder();
 		List<ParametrosWeb> parametrosWeb = new ArrayList<ParametrosWeb>();
-		parametrosWeb.add(new ParametrosWeb("nome", matheus.getNome(), null, null, "or"));
-		parametrosWeb.add(new ParametrosWeb("idade", "18", null, null, "or"));
-		parametrosWeb.add(new ParametrosWeb("datacadastro", "2016-01-01", "2016-12-31"));
-		parametrosWeb.add(new ParametrosWeb("idade", "22", "30"));
+		parametrosWeb.add(new ParametrosWeb("nome", matheus.getNome()));
+		parametrosWeb.add(new ParametrosWeb("idade", "inativo", null, "<>"));
 		System.out.println(builder.execute(Pessoa.class, parametrosWeb));
 	}
 	
