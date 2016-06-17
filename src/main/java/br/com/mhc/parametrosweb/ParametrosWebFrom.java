@@ -1,25 +1,45 @@
 package br.com.mhc.parametrosweb;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import java.util.List;
 
-public class ParametrosWebFrom {
 
-	private static Root<?> root;
+public class ParametrosWebFrom implements ParametrosWebSQL {
+
+	private StringBuilder sql = new StringBuilder("select ");
+	private Parametros parametros = new Parametros();
+	private Class<?> clazz;
 	
-	public static Root<?> getRoot() {
-		return root;
+	public StringBuilder getSql() {
+		return sql;
 	}
-	public static void setRoot(Root<?> root) {
-		ParametrosWebFrom.root = root;
+	public Parametros getParametros() {
+		return parametros;
+	}
+	public Class<?> getClazz() {
+		return clazz;
+	}
+	public void setClazz(Class<?> clazz) {
+		this.clazz = clazz;
 	}
 	
-	public static CriteriaQuery<?> build(CriteriaBuilder criteriaBuilder, Class clazz) {
+	public ParametrosWebFrom from(Class<?> clazz) {
+		setClazz(clazz);
+		return this;
+	}
+	
+	@Override
+	public String build(List<ParametrosWeb> parametrosWeb) {
 		// TODO Auto-generated method stub
-		CriteriaQuery<?> query = criteriaBuilder.createQuery(clazz);
-		setRoot(query.from(clazz));
-		return query;
+		return getSql().append(getParametros().getAlias())
+					   .append(getParametros().getSeparador())
+					   .append(getFrom())
+					   .append(getParametros().getSeparador())
+					   .append(getParametros().getAlias())
+					   .toString();
+	}
+	
+	private String getFrom() {
+		return getParametros().getFrom() + getClazz().getSimpleName();
 	}
 
 }

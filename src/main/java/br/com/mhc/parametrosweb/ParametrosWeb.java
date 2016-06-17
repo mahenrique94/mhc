@@ -1,45 +1,93 @@
 package br.com.mhc.parametrosweb;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import br.com.mhc.function.StringFunction;
-
-
 public class ParametrosWeb {
 
-	private Object obj;
-	private Class clazz;
-	private ArrayList<String> where = new ArrayList<String>();
-	private ArrayList<String> parametros = new ArrayList<String>();
+	private String campo;
+	private String parametroInicial;
+	private String parametroFinal;
+	private String operador;
+	private String juncao;
 	private String orderBy;
 	private Integer limit;
 	
-	public Object getObj() {
-		return obj;
+	public ParametrosWeb() {
+		// TODO Auto-generated constructor stub
 	}
-	public void setObj(Object obj) {
-		this.obj = obj;
+	public ParametrosWeb(String campo, String parametroInicial) {
+		// TODO Auto-generated constructor stub
+		this.campo = campo;
+		this.parametroInicial = parametroInicial;
 	}
-	public Class<?> getClazz() {
-		return clazz;
+	public ParametrosWeb(String campo, String parametroInicial, String parametroFinal) {
+		// TODO Auto-generated constructor stub
+		this.campo = campo;
+		this.parametroInicial = parametroInicial;
+		this.parametroFinal = parametroFinal;
 	}
-	public void setClazz(Class<?> clazz) {
-		this.clazz = clazz;
+	public ParametrosWeb(String campo, String parametroInicial, String parametroFinal, String operador) {
+		// TODO Auto-generated constructor stub
+		this.campo = campo;
+		this.parametroInicial = parametroInicial;
+		this.parametroFinal = parametroFinal;
+		this.operador = operador;
 	}
-	public ArrayList<String> getWhere() {
-		return where;
+	public ParametrosWeb(String campo, String parametroInicial, String parametroFinal, String operador, String juncao) {
+		// TODO Auto-generated constructor stub
+		this.campo = campo;
+		this.parametroInicial = parametroInicial;
+		this.parametroFinal = parametroFinal;
+		this.operador = operador;
+		this.juncao = juncao;
 	}
-	public void setWhere(ArrayList<String> where) {
-		this.where = where;
+	public ParametrosWeb(String campo, String parametroInicial, String parametroFinal, String operador, String juncao, String orderBy) {
+		// TODO Auto-generated constructor stub
+		this.campo = campo;
+		this.parametroInicial = parametroInicial;
+		this.parametroFinal = parametroFinal;
+		this.operador = operador;
+		this.juncao = juncao;
+		this.orderBy = orderBy;
 	}
-	public ArrayList<String> getParametros() {
-		return parametros;
+	public ParametrosWeb(String campo, String parametroInicial, String parametroFinal, String operador, String juncao, String orderBy, Integer limit) {
+		// TODO Auto-generated constructor stub
+		this.campo = campo;
+		this.parametroInicial = parametroInicial;
+		this.parametroFinal = parametroFinal;
+		this.operador = operador;
+		this.juncao = juncao;
+		this.orderBy = orderBy;
+		this.limit = limit;
 	}
-	public void setParametros(ArrayList<String> parametros) {
-		this.parametros = parametros;
+	
+	public String getCampo() {
+		return campo;
+	}
+	public void setCampo(String campo) {
+		this.campo = campo;
+	}
+	public String getParametroInicial() {
+		return parametroInicial;
+	}
+	public void setParametroInicial(String parametroInicial) {
+		this.parametroInicial = parametroInicial;
+	}
+	public String getParametroFinal() {
+		return parametroFinal;
+	}
+	public void setParametroFinal(String parametroFinal) {
+		this.parametroFinal = parametroFinal;
+	}
+	public String getOperador() {
+		return operador;
+	}
+	public void setOperador(String operador) {
+		this.operador = operador;
+	}
+	public String getJuncao() {
+		return juncao != null ? juncao : "and";
+	}
+	public void setJuncao(String juncao) {
+		this.juncao = juncao;
 	}
 	public String getOrderBy() {
 		return orderBy != null ? orderBy : "id";
@@ -54,13 +102,4 @@ public class ParametrosWeb {
 		this.limit = limit;
 	}
 	
-	public HashMap<String, String> getHashMapWhere() {
-		HashMap<String, String> hashMapWhere = new HashMap<String, String>();
-		getWhere().forEach(where -> {
-			where = StringFunction.trimAll(where);
-			hashMapWhere.put(where.toString().substring(0, where.toString().indexOf(":")), where.toString().substring(where.toString().indexOf(":") + 1));
-		});
-		return hashMapWhere;
-	}
-
 }

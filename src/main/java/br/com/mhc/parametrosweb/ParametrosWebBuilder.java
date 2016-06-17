@@ -1,53 +1,33 @@
 package br.com.mhc.parametrosweb;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-
-import br.com.mhc.function.StringFunction;
 
 public class ParametrosWebBuilder {
 
-	private final ParametrosWeb parametrosWeb = new ParametrosWeb();
+	private ParametrosWebQuery parametrosWebQuery = new ParametrosWebQuery();
+	private ParametrosWebFrom parametrosWebFrom = new ParametrosWebFrom();
+	private ParametrosWebWhere parametrosWebWhere = new ParametrosWebWhere();
+	private ParametrosWebOrderBy parametrosWebOrderBy = new ParametrosWebOrderBy();
 	
-	public ParametrosWeb getParametrosWeb() {
-		return parametrosWeb;
+	public ParametrosWebQuery getParametrosWebQuery() {
+		return parametrosWebQuery;
 	}
-	public Object getClazz() {
-		return getParametrosWeb().getClazz();
+	public ParametrosWebFrom getParametrosWebFrom() {
+		return parametrosWebFrom;
 	}
-	
-	public ParametrosWebBuilder from(Class clazz) {
-		getParametrosWeb().setClazz(clazz);
-		return this;
+	public ParametrosWebWhere getParametrosWebWhere() {
+		return parametrosWebWhere;
 	}
-	
-	public ParametrosWebBuilder where(String where, Object obj) {
-		List<String> wheres = Arrays.asList(where.split(","));
-		getParametrosWeb().setWhere(new ArrayList<String>(wheres));
-		wheres.forEach(parametro -> {
-			parametro = StringFunction.trimLeft(parametro);
-			getParametrosWeb().getParametros().add(parametro.substring(0, parametro.indexOf(" ")));
-		});
-		getParametrosWeb().setObj(obj);
-		return this;
+	public ParametrosWebOrderBy getParametrosWebOrderBy() {
+		return parametrosWebOrderBy;
 	}
 	
-	public ParametrosWebBuilder orderBy(String orderBy) {
-		getParametrosWeb().setOrderBy(orderBy);
-		return this;
-	}
-	
-	public ParametrosWebBuilder limit(Integer limit) {
-		getParametrosWeb().setLimit(limit);
-		return this;
-	}
-	
-	public CriteriaQuery<?> execute(CriteriaBuilder criteriaBuilder) {
-		return ParametrosWebQuery.create(getParametrosWeb(), criteriaBuilder, (Class) getClazz());
+	public String execute(Class<?> clazz, List<ParametrosWeb> parametrosWeb) {
+		// TODO Auto-generated method stub
+		getParametrosWebQuery().setFrom(getParametrosWebFrom().from(clazz).build(parametrosWeb));
+		getParametrosWebQuery().setWhere(getParametrosWebWhere().from(clazz).build(parametrosWeb));
+		getParametrosWebQuery().setOrderBy(getParametrosWebOrderBy().build(parametrosWeb));
+		return getParametrosWebQuery().build();
 	}
 	
 }

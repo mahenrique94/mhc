@@ -1,11 +1,13 @@
 package br.com.mhc.parametrosweb;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 
@@ -19,16 +21,16 @@ public class BuscaPessoa {
 		em.getTransaction().begin();
 		
 		ParametrosWebBuilder builder = new ParametrosWebBuilder();
-		Pessoa pessoa = new Pessoa("Matheus", 22, "M", Calendar.getInstance());
+		Pessoa matheus = new Pessoa("Paola", 22, "M", Calendar.getInstance());
 		
-		builder.from(Pessoa.class).where("nome : like", pessoa);
+		List<ParametrosWeb> parametrosWeb = new ArrayList<ParametrosWeb>();
+		parametrosWeb.add(new ParametrosWeb("nome", matheus.getNome()));
 		
-		TypedQuery<?> typedQuery = em.createQuery(builder.execute(em.getCriteriaBuilder()));
+		Query query = em.createQuery(builder.execute(Pessoa.class, parametrosWeb));
+		List<Pessoa> pessoas = query.getResultList();
 		
-		List<Pessoa> pessoas = (List<Pessoa>) typedQuery.getResultList();
-		
-		for (Pessoa pessoaResult : pessoas) {
-			System.out.println(pessoaResult.getId() + " - " + pessoaResult.getNome());
+		for (Pessoa pessoa : pessoas) {
+			System.out.println(pessoa.getId() + " - " + pessoa.getNome());
 		}
 		
 		em.getTransaction().commit();
