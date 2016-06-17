@@ -24,9 +24,11 @@ public class BuscaPessoa {
 		Pessoa matheus = new Pessoa("Paola", 22, "M", Calendar.getInstance());
 		
 		List<ParametrosWeb> parametrosWeb = new ArrayList<ParametrosWeb>();
-		parametrosWeb.add(new ParametrosWeb("nome", matheus.getNome()));
+		parametrosWeb.add(new ParametrosWeb("nome", "João"));
+		parametrosWeb.add(new ParametrosWeb("datacadastro", "2016-01-01", "2016-12-31"));
+		parametrosWeb.add(new ParametrosWeb("idade", "18", "30"));
 		
-		Query query = em.createQuery(builder.execute(Pessoa.class, null));
+		Query query = em.createQuery(builder.execute(Pessoa.class, parametrosWeb));
 		List<Pessoa> pessoas = query.getResultList();
 		
 		for (Pessoa pessoa : pessoas) {

@@ -6,7 +6,7 @@ import java.util.List;
 public class ParametrosWebFrom implements ParametrosWebSQL {
 
 	private StringBuilder sql = new StringBuilder("select ");
-	private Parametros parametros = new Parametros();
+	private final Parametros parametros = new Parametros();
 	private Class<?> clazz;
 	
 	public StringBuilder getSql() {

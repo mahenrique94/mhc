@@ -4,10 +4,10 @@ import java.util.List;
 
 public class ParametrosWebBuilder {
 
-	private ParametrosWebQuery parametrosWebQuery = new ParametrosWebQuery();
-	private ParametrosWebFrom parametrosWebFrom = new ParametrosWebFrom();
-	private ParametrosWebWhere parametrosWebWhere = new ParametrosWebWhere();
-	private ParametrosWebOrderBy parametrosWebOrderBy = new ParametrosWebOrderBy();
+	private final ParametrosWebQuery parametrosWebQuery = new ParametrosWebQuery();
+	private final ParametrosWebFrom parametrosWebFrom = new ParametrosWebFrom();
+	private final ParametrosWebWhere parametrosWebWhere = new ParametrosWebWhere();
+	private final ParametrosWebOrderBy parametrosWebOrderBy = new ParametrosWebOrderBy();
 	
 	public ParametrosWebQuery getParametrosWebQuery() {
 		return parametrosWebQuery;
