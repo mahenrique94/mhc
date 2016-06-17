@@ -5,7 +5,7 @@ public class ParametrosWebQuery {
 	private String from;
 	private String where;
 	private String orderBy;
-	private String limit;
+	private Integer limit;
 	
 	public String getFrom() {
 		return from;
@@ -20,19 +20,26 @@ public class ParametrosWebQuery {
 		this.where = where;
 	}
 	public String getOrderBy() {
-		return orderBy;
+		return orderBy != null ? orderBy : " order by a.id";
 	}
 	public void setOrderBy(String orderBy) {
 		this.orderBy = orderBy;
 	}
-	public String getLimit() {
-		return limit;
+	public Integer getLimit() {
+		return limit != null ? limit : 100;
 	}
-	public void setLimit(String limit) {
+	public void setLimit(Integer limit) {
 		this.limit = limit;
 	}
 	
 	public String build() {
-		return getFrom().concat(getWhere()).concat(getOrderBy());
+		StringBuilder query = new StringBuilder();
+		if (getFrom() != null)
+			query.append(getFrom());
+		if (getWhere() != null)
+			query.append(getWhere());
+		if (getOrderBy() != null)
+			query.append(getOrderBy());
+		return query.toString();
 	}
 }

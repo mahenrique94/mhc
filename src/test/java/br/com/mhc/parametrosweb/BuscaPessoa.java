@@ -26,7 +26,7 @@ public class BuscaPessoa {
 		List<ParametrosWeb> parametrosWeb = new ArrayList<ParametrosWeb>();
 		parametrosWeb.add(new ParametrosWeb("nome", matheus.getNome()));
 		
-		Query query = em.createQuery(builder.execute(Pessoa.class, parametrosWeb));
+		Query query = em.createQuery(builder.execute(Pessoa.class, null));
 		List<Pessoa> pessoas = query.getResultList();
 		
 		for (Pessoa pessoa : pessoas) {

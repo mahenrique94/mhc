@@ -24,9 +24,13 @@ public class ParametrosWebBuilder {
 	
 	public String execute(Class<?> clazz, List<ParametrosWeb> parametrosWeb) {
 		// TODO Auto-generated method stub
-		getParametrosWebQuery().setFrom(getParametrosWebFrom().from(clazz).build(parametrosWeb));
-		getParametrosWebQuery().setWhere(getParametrosWebWhere().from(clazz).build(parametrosWeb));
-		getParametrosWebQuery().setOrderBy(getParametrosWebOrderBy().build(parametrosWeb));
+		if (parametrosWeb != null && !parametrosWeb.isEmpty()) {
+			getParametrosWebQuery().setFrom(getParametrosWebFrom().from(clazz).build(parametrosWeb));
+			getParametrosWebQuery().setWhere(getParametrosWebWhere().from(clazz).build(parametrosWeb));
+			getParametrosWebQuery().setOrderBy(getParametrosWebOrderBy().build(parametrosWeb));
+		} else {
+			getParametrosWebQuery().setFrom(getParametrosWebFrom().from(clazz).build(parametrosWeb));
+		}
 		return getParametrosWebQuery().build();
 	}
 	
