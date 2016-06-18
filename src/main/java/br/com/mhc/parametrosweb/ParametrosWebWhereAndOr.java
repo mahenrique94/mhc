@@ -4,23 +4,16 @@ import java.util.List;
 
 import br.com.mhc.function.ClassFunction;
 
-public class ParametrosWebWhereAndOr implements ParametrosWebWhereSQL {
-
-	private StringBuilder sql = new StringBuilder();
-	private final Parametros parametros = new Parametros();
-	
-	public StringBuilder getSql() {
-		return sql;
-	}
-	public Parametros getParametros() {
-		return parametros;
-	}
+public class ParametrosWebWhereAndOr extends ParametrosWebWhereDefault {
 
 	@Override
 	public String build(Class<?> clazz, List<ParametrosWeb> parametrosWeb, List<List<String>> predicates) {
 		// TODO Auto-generated method stub
 		for(int i = 0; i < predicates.size(); i++) {
 			List<String> predicate = predicates.get(i);
+			if (super.isInvalid(predicate)) {
+				continue;
+			}
 			Operador operador = null;
 			String type = null;
 			try {

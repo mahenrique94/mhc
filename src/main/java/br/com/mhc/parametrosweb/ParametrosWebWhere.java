@@ -9,7 +9,7 @@ import br.com.mhc.model.Pessoa;
 
 public class ParametrosWebWhere implements ParametrosWebSQL {
 
-	private StringBuilder sql = new StringBuilder(" where ");
+	private StringBuilder sql = new StringBuilder();
 	private final Parametros parametros = new Parametros();
 	private List<List<String>> predicatesAnd = new ArrayList<List<String>>();
 	private List<List<String>> predicatesOr = new ArrayList<List<String>>();
