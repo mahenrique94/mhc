@@ -7,34 +7,19 @@ import java.util.List;
 import br.com.mhc.function.ClassFunction;
 import br.com.mhc.model.Pessoa;
 
-public class ParametrosWebWhere implements ParametrosWebSQL {
+public class ParametrosWebWhere extends ParametrosWebSQLDefault {
 
-	private StringBuilder sql = new StringBuilder();
-	private final Parametros parametros = new Parametros();
 	private List<List<String>> predicatesAnd = new ArrayList<List<String>>();
 	private List<List<String>> predicatesOr = new ArrayList<List<String>>();
-	private Class<?> clazz;
 	private final ParametrosWebWhereAnd parametrosWebWhereAnd = new ParametrosWebWhereAnd();
 	private final ParametrosWebWhereAndOr parametrosWebWhereAndOr = new ParametrosWebWhereAndOr();
 	private final ParametrosWebWhereOr parametrosWebWhereOr = new ParametrosWebWhereOr();
 	
-	public StringBuilder getSql() {
-		return sql;
-	}
-	public Parametros getParametros() {
-		return parametros;
-	}
 	public List<List<String>> getPredicatesAnd() {
 		return Collections.unmodifiableList(predicatesAnd);
 	}
 	public List<List<String>> getPredicatesOr() {
 		return Collections.unmodifiableList(predicatesOr);
-	}
-	public Class<?> getClazz() {
-		return clazz;
-	}
-	public void setClazz(Class<?> clazz) {
-		this.clazz = clazz;
 	}
 	public ParametrosWebWhereAnd getParametrosWebWhereAnd() {
 		return parametrosWebWhereAnd;
@@ -44,11 +29,6 @@ public class ParametrosWebWhere implements ParametrosWebSQL {
 	}
 	public ParametrosWebWhereOr getParametrosWebWhereOr() {
 		return parametrosWebWhereOr;
-	}
-	
-	public ParametrosWebWhere from(Class<?> clazz) {
-		setClazz(clazz);
-		return this;
 	}
 	
 	@Override

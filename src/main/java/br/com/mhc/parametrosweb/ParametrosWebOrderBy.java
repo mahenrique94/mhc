@@ -3,12 +3,11 @@ package br.com.mhc.parametrosweb;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParametrosWebOrderBy implements ParametrosWebSQL {
+public class ParametrosWebOrderBy extends ParametrosWebSQLDefault {
 
-	private StringBuilder sql = new StringBuilder(" order by");
-	
-	public StringBuilder getSql() {
-		return sql;
+	public ParametrosWebOrderBy() {
+		// TODO Auto-generated constructor stub
+		getSql().append(" order by");
 	}
 	
 	@Override

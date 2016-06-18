@@ -14,7 +14,7 @@ public class TestandoSQL {
 		ParametrosWebBuilder builder = new ParametrosWebBuilder();
 		List<ParametrosWeb> parametrosWeb = new ArrayList<ParametrosWeb>();
 		parametrosWeb.add(new ParametrosWeb("nome", "Matheus"));
-		parametrosWeb.add(new ParametrosWeb("datacadastro", "01/01/2016", "31/12/2016"));
+//		parametrosWeb.add(new ParametrosWeb("datacadastro", "01/01/2016", "31/12/2016"));
 		System.out.println(builder.execute(Pessoa.class, parametrosWeb));
 	}
 	

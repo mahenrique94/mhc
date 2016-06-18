@@ -3,30 +3,13 @@ package br.com.mhc.parametrosweb;
 import java.util.List;
 
 
-public class ParametrosWebFrom implements ParametrosWebSQL {
+public class ParametrosWebFrom extends ParametrosWebSQLDefault {
+	
+	public ParametrosWebFrom() {
+		// TODO Auto-generated constructor stub
+		getSql().append("select ");
+	}
 
-	private StringBuilder sql = new StringBuilder("select ");
-	private final Parametros parametros = new Parametros();
-	private Class<?> clazz;
-	
-	public StringBuilder getSql() {
-		return sql;
-	}
-	public Parametros getParametros() {
-		return parametros;
-	}
-	public Class<?> getClazz() {
-		return clazz;
-	}
-	public void setClazz(Class<?> clazz) {
-		this.clazz = clazz;
-	}
-	
-	public ParametrosWebFrom from(Class<?> clazz) {
-		setClazz(clazz);
-		return this;
-	}
-	
 	@Override
 	public String build(List<ParametrosWeb> parametrosWeb) {
 		// TODO Auto-generated method stub
