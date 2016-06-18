@@ -11,7 +11,7 @@ public class ParametrosWebWhereAnd extends ParametrosWebWhereDefault {
 		// TODO Auto-generated method stub
 		for(int i = 0; i < predicates.size(); i++) {
 			List<String> predicate = predicates.get(i);
-			if (super.isInvalid(predicate)) {
+			if (super.isInvalid(predicate) && parametrosWeb.get(i).getOperador() == null) {
 				int posicaoDelete = getSql().indexOf("and") > 0 ? getSql().indexOf("and") : getSql().indexOf("where");
 				getSql().delete((posicaoDelete - 1), getSql().capacity());
 				continue;
@@ -20,7 +20,7 @@ public class ParametrosWebWhereAnd extends ParametrosWebWhereDefault {
 			String type = null;
 			try {
 				type = ClassFunction.getTypeAttribute(clazz, predicate.get(0));
-				operador = OperadorFactory.create(type, predicate.get(2));
+				operador = OperadorFactory.create(type, predicate.get(2), parametrosWeb.get(i).getOperador());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				throw new RuntimeException("Não foi possível pegar o operador para o parâmetro: " + predicate.get(0));
@@ -29,7 +29,7 @@ public class ParametrosWebWhereAnd extends ParametrosWebWhereDefault {
 					.append(getParametros().getJuntador())
 					.append(predicate.get(0))
 					.append(getParametros().getSeparador())
-					.append(parametrosWeb.get(i).getOperador() != null ? operador.get(predicate, parametrosWeb.get(i).getOperador(), type) : operador.get(predicate));
+					.append(operador.get(predicate));
 			if (super.isLastParametro(i, (predicates.size() - 1))) {
 				break;
 			}

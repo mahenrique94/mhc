@@ -18,7 +18,7 @@ public class ParametrosWebWhereAndOr extends ParametrosWebWhereDefault {
 			String type = null;
 			try {
 				type = ClassFunction.getTypeAttribute(clazz, predicate.get(0));
-				operador = OperadorFactory.create(type, predicate.get(2));
+				operador = OperadorFactory.create(type, predicate.get(2), parametrosWeb.get(i).getOperador());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				throw new RuntimeException("Não foi possível pegar o operador para o parâmetro: " + predicate.get(0));
@@ -27,7 +27,7 @@ public class ParametrosWebWhereAndOr extends ParametrosWebWhereDefault {
 					.append(getParametros().getJuntador())
 					.append(predicate.get(0))
 					.append(getParametros().getSeparador())
-					.append(parametrosWeb.get(i).getOperador() != null ? operador.get(predicate, parametrosWeb.get(i).getOperador(), type) : operador.get(predicate))
+					.append(operador.get(predicate))
 					.append(getParametros().getSeparador())
 					.append("and")
 					.append(getParametros().getSeparador());
