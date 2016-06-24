@@ -6,6 +6,9 @@ public abstract class ParametrosWebSQLDefault implements ParametrosWebSQL {
 	private final Parametros parametros = new Parametros();
 	private Class<?> clazz;
 	
+	public void setSql(String sql) {
+		this.sql = new StringBuilder(sql);
+	}
 	public StringBuilder getSql() {
 		return sql;
 	}

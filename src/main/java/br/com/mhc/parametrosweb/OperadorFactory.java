@@ -10,6 +10,8 @@ public class OperadorFactory {
 				return new OperadorMenor();
 			if (operador.equals(">"))
 				return new OperadorMaior();
+			if (operador.equals("<>"))
+				return new OperadorDiferente();
 			if (operador.equals("is null"))
 				return new OperadorIsNull();
 			if (operador.equals("is not null"))

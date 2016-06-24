@@ -26,7 +26,7 @@ public class TestandoJPA2 {
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Pessoa> query = builder.createQuery(Pessoa.class);
 		
-		Pessoa matheus = new Pessoa("Matheus", 15, "M", Calendar.getInstance());
+		Pessoa matheus = new Pessoa(1, "Matheus", 15, "M", Calendar.getInstance());
 		
 		Root<Pessoa> root = query.from(Pessoa.class);
 		Path<String> nome = root.<String> get("nome");

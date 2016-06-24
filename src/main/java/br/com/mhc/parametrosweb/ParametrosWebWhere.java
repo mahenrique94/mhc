@@ -9,12 +9,19 @@ import br.com.mhc.model.Pessoa;
 
 public class ParametrosWebWhere extends ParametrosWebSQLDefault {
 
+	private List<ParametrosWeb> parametrosWebAnd = new ArrayList<ParametrosWeb>();
+	private List<ParametrosWeb> parametrosWebOr = new ArrayList<ParametrosWeb>();
 	private List<List<String>> predicatesAnd = new ArrayList<List<String>>();
 	private List<List<String>> predicatesOr = new ArrayList<List<String>>();
 	private final ParametrosWebWhereAnd parametrosWebWhereAnd = new ParametrosWebWhereAnd();
-	private final ParametrosWebWhereAndOr parametrosWebWhereAndOr = new ParametrosWebWhereAndOr();
 	private final ParametrosWebWhereOr parametrosWebWhereOr = new ParametrosWebWhereOr();
 	
+	public List<ParametrosWeb> getParametrosWebAnd() {
+		return Collections.unmodifiableList(parametrosWebAnd);
+	}
+	public List<ParametrosWeb> getParametrosWebOr() {
+		return Collections.unmodifiableList(parametrosWebOr);
+	}
 	public List<List<String>> getPredicatesAnd() {
 		return Collections.unmodifiableList(predicatesAnd);
 	}
@@ -24,9 +31,6 @@ public class ParametrosWebWhere extends ParametrosWebSQLDefault {
 	public ParametrosWebWhereAnd getParametrosWebWhereAnd() {
 		return parametrosWebWhereAnd;
 	}
-	public ParametrosWebWhereAndOr getParametrosWebWhereAndOr() {
-		return parametrosWebWhereAndOr;
-	}
 	public ParametrosWebWhereOr getParametrosWebWhereOr() {
 		return parametrosWebWhereOr;
 	}
@@ -35,12 +39,13 @@ public class ParametrosWebWhere extends ParametrosWebSQLDefault {
 	public String build(List<ParametrosWeb> parametrosWeb) {
 		// TODO Auto-generated method stub
 		setCamposParametros(parametrosWeb);
-		if (!getPredicatesAnd().isEmpty() && getPredicatesOr().isEmpty())
-			getSql().append(getParametrosWebWhereAnd().build(getClazz(), parametrosWeb, getPredicatesAnd()));
-		if (!getPredicatesAnd().isEmpty() && !getPredicatesOr().isEmpty())
-			getSql().append(getParametrosWebWhereAndOr().build(getClazz(), parametrosWeb, getPredicatesAnd()));
+		setParametrosWeb(parametrosWeb);
+		if (!getPredicatesAnd().isEmpty())
+			getSql().append(getParametrosWebWhereAnd().build(getClazz(), getParametrosWebAnd(), getPredicatesAnd()));
 		if (!getPredicatesOr().isEmpty())
-			getSql().append(getParametrosWebWhereOr().build(getClazz(), parametrosWeb, getPredicatesOr()));
+			getSql().append(getParametrosWebWhereOr().build(getClazz(), getParametrosWebOr(), getPredicatesOr()));
+		if (!getPredicatesAnd().isEmpty() && !getPredicatesOr().isEmpty())
+			setSql(getSql().toString().replace("where (", "and ("));
 		return getSql().toString();
 	}
 	
@@ -54,6 +59,15 @@ public class ParametrosWebWhere extends ParametrosWebSQLDefault {
 				this.predicatesAnd.add(predicate);
 			else
 				this.predicatesOr.add(predicate);
+		});
+	}
+	
+	private void setParametrosWeb(List<ParametrosWeb> parametrosWeb) {
+		parametrosWeb.forEach(parametro -> {
+			if (parametro.getJuncao().equals("and"))
+				this.parametrosWebAnd.add(parametro);
+			else
+				this.parametrosWebOr.add(parametro);
 		});
 	}
 	

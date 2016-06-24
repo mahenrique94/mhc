@@ -10,11 +10,11 @@ public class TestFilterList {
 	
 	public static void main(String[] args) {
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
-		pessoas.add(new Pessoa("João", 30, "M", Calendar.getInstance()));
-		pessoas.add(new Pessoa("Matheus", 21, "M", Calendar.getInstance()));
-		pessoas.add(new Pessoa("Maria", 18, "F", Calendar.getInstance()));
+		pessoas.add(new Pessoa(1, "João", 30, "M", Calendar.getInstance()));
+		pessoas.add(new Pessoa(2, "Matheus", 21, "M", Calendar.getInstance()));
+		pessoas.add(new Pessoa(3, "Maria", 18, "F", Calendar.getInstance()));
 		
-		Pessoa matheus = new Pessoa("Matheus", 21, "M", Calendar.getInstance());
+		Pessoa matheus = new Pessoa(4, "Matheus", 21, "M", Calendar.getInstance());
 		
 		int indexMatheus = pessoas.indexOf(matheus);
 		System.out.println(indexMatheus);

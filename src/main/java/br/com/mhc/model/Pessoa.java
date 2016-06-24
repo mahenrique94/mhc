@@ -24,7 +24,8 @@ public class Pessoa implements Serializable {
 	public Pessoa() {
 		// TODO Auto-generated constructor stub
 	}
-	public Pessoa(String nome, Integer idade, String sexo, Calendar datacadastro) {
+	public Pessoa(Integer id, String nome, Integer idade, String sexo, Calendar datacadastro) {
+		this.id = id;
 		this.nome = nome;
 		this.idade = idade;
 		this.sexo = sexo;

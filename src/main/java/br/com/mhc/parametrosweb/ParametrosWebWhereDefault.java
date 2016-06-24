@@ -17,10 +17,8 @@ public abstract class ParametrosWebWhereDefault implements ParametrosWebWhereSQL
 	protected boolean isInvalid(List<String> predicates) {
 		if (predicates == null)
 			return true;
-		for (int i = 0; i < (predicates.size() - 1); i++) {
-			if (predicates.get(i) == null)
-				return true;
-		}
+		if (predicates.get(0) == null && predicates.get(1) == null)
+			return true;
 		return false;
 	}
 	

@@ -8,13 +8,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaQuery;
 
 import br.com.mhc.model.Pessoa;
+import br.com.mhc.model.PessoaEndereco;
 
-public class BuscaPessoa {
-
+public class BuscaPessoaEndereco {
+	
 	public static void main(String[] args) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
 		EntityManager em = factory.createEntityManager();
@@ -22,21 +21,21 @@ public class BuscaPessoa {
 		
 		ParametrosWebBuilder builder = new ParametrosWebBuilder();
 		Pessoa matheus = new Pessoa(7, "Paola", 22, "M", Calendar.getInstance());
+		matheus.setId(7);
+		PessoaEndereco matheusEndereco = new PessoaEndereco(1, matheus, "Avenida Teste", Calendar.getInstance());
 		
 		List<ParametrosWeb> parametrosWeb = new ArrayList<ParametrosWeb>();
-		parametrosWeb.add(new ParametrosWeb("nome", "João"));
-		parametrosWeb.add(new ParametrosWeb("datacadastro", "2016-01-01", "2016-12-31"));
-		parametrosWeb.add(new ParametrosWeb("idade", "18", "30"));
+		parametrosWeb.add(new ParametrosWeb("idpessoa.id", matheusEndereco.getIdpessoa().getId().toString()));
 		
-		Query query = em.createQuery(builder.execute(Pessoa.class, parametrosWeb));
-		List<Pessoa> pessoas = query.getResultList();
+		Query query = em.createQuery(builder.execute(PessoaEndereco.class, parametrosWeb));
+		List<PessoaEndereco> pessoas = query.getResultList();
 		
-		for (Pessoa pessoa : pessoas) {
-			System.out.println(pessoa.getId() + " - " + pessoa.getNome());
+		for (PessoaEndereco pessoa : pessoas) {
+			System.out.println(pessoa.getId() + " - " + pessoa.getEndereco());
 		}
 		
 		em.getTransaction().commit();
 		em.close();
 	}
-	
+
 }

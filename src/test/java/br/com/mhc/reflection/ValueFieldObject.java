@@ -8,7 +8,7 @@ import br.com.mhc.model.Pessoa;
 public class ValueFieldObject {
 
 	public static void main(String[] args) throws Exception {
-		Pessoa pessoa = new Pessoa("Matheus", 22, "M", Calendar.getInstance());
+		Pessoa pessoa = new Pessoa(1, "Matheus", 22, "M", Calendar.getInstance());
 		Object obj = pessoa;
 		Field field = obj.getClass().getDeclaredField("nome");
 		field.setAccessible(true);
