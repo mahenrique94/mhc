@@ -11,7 +11,7 @@ public class OperadorFactory {
 			if (operador.equals(">"))
 				return new OperadorMaior();
 			if (operador.equals("<>"))
-				return new OperadorDiferente();
+				return new OperadorDiferente(type);
 			if (operador.equals("is null"))
 				return new OperadorIsNull();
 			if (operador.equals("is not null"))

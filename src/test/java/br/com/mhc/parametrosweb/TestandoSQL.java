@@ -15,9 +15,7 @@ public class TestandoSQL {
 		PessoaEndereco joaoEndereco = new PessoaEndereco(1, joao, "Avenida Teste", Calendar.getInstance());
 		ParametrosWebBuilder builder = new ParametrosWebBuilder();
 		List<ParametrosWeb> parametrosWeb = new ArrayList<ParametrosWeb>();
-		parametrosWeb.add(new ParametrosWeb("nome", joao.getNome()));
-		parametrosWeb.add(new ParametrosWeb("datacadastro", null, null, "is not null", "or"));
-		parametrosWeb.add(new ParametrosWeb("idade", joao.getIdade().toString(), null, null, "or"));
+		parametrosWeb.add(new ParametrosWeb("idade", "10", null, "<>"));
 		System.out.println(builder.execute(Pessoa.class, parametrosWeb));
 	}
 	
