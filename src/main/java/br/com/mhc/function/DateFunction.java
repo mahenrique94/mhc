@@ -3,18 +3,22 @@ package br.com.mhc.function;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class DateFunction {
 
+	
 	public static Calendar setDaysInDate(Calendar date, int days) {
-		date.add(Calendar.DAY_OF_MONTH, days);
-		return date;
+		Calendar data = new GregorianCalendar(date.get(date.YEAR), date.get(date.MONTH), date.get(date.DAY_OF_MONTH));
+		data.add(Calendar.DAY_OF_MONTH, days);
+		return data;
 	}
 	
 	public static Calendar setMonthInDate(Calendar date, int month) {
-		date.add(Calendar.MONTH, month);
-		return date;
+		Calendar data = new GregorianCalendar(date.get(date.YEAR), date.get(date.MONTH), date.get(date.DAY_OF_MONTH));
+		data.add(Calendar.MONTH, month);
+		return data;
 	}
 	
 	public static String formatBrazilianToAmerican(String data) {
