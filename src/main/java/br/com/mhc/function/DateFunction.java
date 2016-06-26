@@ -1,13 +1,27 @@
 package br.com.mhc.function;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 public class DateFunction {
 
+	public static String formatBrazilianToAmerican(String data) {
+		List<String> compose = Arrays.asList(data.split("/"));
+		StringBuilder dataFinal = new StringBuilder();
+		Collections.reverse(compose);
+		for (int i = 0; i < compose.size(); i++) {
+			dataFinal.append(compose.get(i));
+			if (i < (compose.size() - 1))
+				dataFinal.append("-");
+		}
+		return dataFinal.toString();
+	}
 	
 	public static Calendar setDaysInDate(Calendar date, int days) {
 		Calendar data = new GregorianCalendar(date.get(date.YEAR), date.get(date.MONTH), date.get(date.DAY_OF_MONTH));
@@ -21,16 +35,16 @@ public class DateFunction {
 		return data;
 	}
 	
-	public static String formatBrazilianToAmerican(String data) {
-		List<String> compose = Arrays.asList(data.split("/"));
-		StringBuilder dataFinal = new StringBuilder();
-		Collections.reverse(compose);
-		for (int i = 0; i < compose.size(); i++) {
-			dataFinal.append(compose.get(i));
-			if (i < (compose.size() - 1))
-				dataFinal.append("-");
+	public static Calendar stringToCalendar(String data) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date dataParse = null;
+		try {
+			dataParse = sdf.parse(data);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return dataFinal.toString();
+		return sdf.getCalendar();
 	}
 	
 }
