@@ -9,8 +9,8 @@ public class ParametrosWebValidator {
 	}
 	
 	public boolean validaWhere(String campo, String parametroInicial) {
-		if (campo == null && parametroInicial == null)
-			throw new ParametrosWebExpection("Atenção, para criar as opções de where o campo e o parametros inicial não podem ser nulos");
+		if (campo == null || parametroInicial == null)
+			throw new ParametrosWebExpection("Atenção, para criar as opções de where o campo e o parametro inicial não podem ser nulos");
 		return true;
 	}
 	

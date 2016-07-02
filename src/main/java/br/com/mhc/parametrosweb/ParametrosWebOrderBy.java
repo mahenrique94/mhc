@@ -22,26 +22,30 @@ public class ParametrosWebOrderBy implements ParametrosWebSQL {
 		Collection<Object> orderBy = new ArrayList<Object>();
 		List<ParametrosWeb> parametrosWeb = (List<ParametrosWeb>) parametros[0];
 		boolean adicionaVirgula = false;
-		if (new ParametrosWebValidator().validaOrderBy(parametrosWeb.get(0).getCampo())) {
-			orderBy.add(orderBy());
-			for (int i = 0; i < parametrosWeb.size(); i++) {
-				if (parametrosWeb.get(i).getOrderBy() != null) {
-					if (!orderBy.contains(campo(parametrosWeb.get(i).getOrderBy()))) {
-						orderBy.add(campo(parametrosWeb.get(i).getOrderBy()));
-						adicionaVirgula = true;
+		try {
+			if (new ParametrosWebValidator().validaOrderBy(parametrosWeb.get(0).getCampo())) {
+				orderBy.add(orderBy());
+				for (int i = 0; i < parametrosWeb.size(); i++) {
+					if (parametrosWeb.get(i).getOrderBy() != null) {
+						if (!orderBy.contains(campo(parametrosWeb.get(i).getOrderBy()))) {
+							orderBy.add(campo(parametrosWeb.get(i).getOrderBy()));
+							adicionaVirgula = true;
+						}
+					} else {
+						if (!orderBy.contains(campo("id"))) {
+							orderBy.add(campo("id"));
+							adicionaVirgula = true;
+						}
 					}
-				} else {
-					if (!orderBy.contains(campo("id"))) {
-						orderBy.add(campo("id"));
-						adicionaVirgula = true;
+					if (adicionaVirgula) {
+						orderBy.add(",");
+						adicionaVirgula = false;
 					}
-				}
-				if (adicionaVirgula) {
-					orderBy.add(",");
-					adicionaVirgula = false;
 				}
 			}
-		} else {
+		} catch (Exception e) {
+			// TODO: handle exception
+			orderBy.add(orderBy());
 			orderBy.add(campo("id"));
 		}
 		this.atributos.addAll(orderBy);
