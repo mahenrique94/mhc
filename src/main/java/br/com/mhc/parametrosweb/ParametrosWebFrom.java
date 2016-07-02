@@ -1,28 +1,38 @@
 package br.com.mhc.parametrosweb;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-
-public class ParametrosWebFrom extends ParametrosWebSQLDefault {
-	
-	public ParametrosWebFrom() {
-		// TODO Auto-generated constructor stub
-		getSql().append("select ");
-	}
+public class ParametrosWebFrom implements ParametrosWebSQL {
 
 	@Override
-	public String build(List<ParametrosWeb> parametrosWeb) {
+	public Collection build(Object... parametros) {
 		// TODO Auto-generated method stub
-		return getSql().append(getParametros().getAlias())
-					   .append(getParametros().getSeparador())
-					   .append(getFrom())
-					   .append(getParametros().getSeparador())
-					   .append(getParametros().getAlias())
-					   .toString();
+		Collection<Object> from = new ArrayList<Object>();
+		from.add(select());
+		from.add(alias());
+		from.add(from());
+		from.add(table((Class<?>) parametros[0]));
+		from.add(alias());
+		from.addAll(new ParametrosWebWhere().build(parametros[0], parametros[1]));
+		return from;
 	}
 	
-	private String getFrom() {
-		return getParametros().getFrom() + getClazz().getSimpleName();
+	private String select() {
+		return "select";
+	}
+	
+	private String alias() {
+		return "a";
+	}
+	
+	private String from() {
+		return "from";
+	}
+	
+	private String table(Class<?> clazz) {
+		return clazz.getSimpleName();
 	}
 
 }

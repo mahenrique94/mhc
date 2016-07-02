@@ -1,37 +1,23 @@
 package br.com.mhc.parametrosweb;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class ParametrosWebBuilder {
+	
+	private List<ParametrosWeb> parametrosWeb;
+	private Queue<Object> atributos = new LinkedList<Object>();
 
-	private final ParametrosWebQuery parametrosWebQuery = new ParametrosWebQuery();
-	private final ParametrosWebFrom parametrosWebFrom = new ParametrosWebFrom();
-	private final ParametrosWebWhere parametrosWebWhere = new ParametrosWebWhere();
-	private final ParametrosWebOrderBy parametrosWebOrderBy = new ParametrosWebOrderBy();
-	
-	public ParametrosWebQuery getParametrosWebQuery() {
-		return parametrosWebQuery;
-	}
-	public ParametrosWebFrom getParametrosWebFrom() {
-		return parametrosWebFrom;
-	}
-	public ParametrosWebWhere getParametrosWebWhere() {
-		return parametrosWebWhere;
-	}
-	public ParametrosWebOrderBy getParametrosWebOrderBy() {
-		return parametrosWebOrderBy;
+	public void from(Class<?> clazz) {
+		this.atributos.addAll(new ParametrosWebFrom().build(clazz, this.parametrosWeb));
 	}
 	
-	public String execute(Class<?> clazz, List<ParametrosWeb> parametrosWeb) {
-		// TODO Auto-generated method stub
-		if (parametrosWeb != null && !parametrosWeb.isEmpty()) {
-			getParametrosWebQuery().setFrom(getParametrosWebFrom().from(clazz).build(parametrosWeb));
-			getParametrosWebQuery().setWhere(getParametrosWebWhere().from(clazz).build(parametrosWeb));
-			getParametrosWebQuery().setOrderBy(getParametrosWebOrderBy().build(parametrosWeb));
-		} else {
-			getParametrosWebQuery().setFrom(getParametrosWebFrom().from(clazz).build(parametrosWeb));
-		}
-		return getParametrosWebQuery().build();
+	public String createQuery(Class<?> clazz, List<ParametrosWeb> parametrosWeb) {
+		this.parametrosWeb = parametrosWeb;
+		if (new ParametrosWebValidator().validaFrom(clazz))
+			from(clazz);
+		return new ParametrosWebFactory().create(this.atributos);
 	}
 	
 }

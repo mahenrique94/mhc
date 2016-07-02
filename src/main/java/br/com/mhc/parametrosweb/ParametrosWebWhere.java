@@ -1,74 +1,70 @@
 package br.com.mhc.parametrosweb;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Collection;
 import java.util.List;
 
 import br.com.mhc.function.ClassFunction;
-import br.com.mhc.model.Pessoa;
 
-public class ParametrosWebWhere extends ParametrosWebSQLDefault {
+public class ParametrosWebWhere implements ParametrosWebSQL {
 
-	private List<ParametrosWeb> parametrosWebAnd = new ArrayList<ParametrosWeb>();
-	private List<ParametrosWeb> parametrosWebOr = new ArrayList<ParametrosWeb>();
-	private List<List<String>> predicatesAnd = new ArrayList<List<String>>();
-	private List<List<String>> predicatesOr = new ArrayList<List<String>>();
-	private final ParametrosWebWhereAnd parametrosWebWhereAnd = new ParametrosWebWhereAnd();
-	private final ParametrosWebWhereOr parametrosWebWhereOr = new ParametrosWebWhereOr();
-	
-	public List<ParametrosWeb> getParametrosWebAnd() {
-		return Collections.unmodifiableList(parametrosWebAnd);
-	}
-	public List<ParametrosWeb> getParametrosWebOr() {
-		return Collections.unmodifiableList(parametrosWebOr);
-	}
-	public List<List<String>> getPredicatesAnd() {
-		return Collections.unmodifiableList(predicatesAnd);
-	}
-	public List<List<String>> getPredicatesOr() {
-		return Collections.unmodifiableList(predicatesOr);
-	}
-	public ParametrosWebWhereAnd getParametrosWebWhereAnd() {
-		return parametrosWebWhereAnd;
-	}
-	public ParametrosWebWhereOr getParametrosWebWhereOr() {
-		return parametrosWebWhereOr;
-	}
+	private List<List<String>> parametrosAnd = new ArrayList<List<String>>();
+	private List<List<String>> parametrosOr = new ArrayList<List<String>>();
+	private Class<?> clazz;
 	
 	@Override
-	public String build(List<ParametrosWeb> parametrosWeb) {
+	public Collection build(Object... parametros) {
 		// TODO Auto-generated method stub
-		setCamposParametros(parametrosWeb);
-		setParametrosWeb(parametrosWeb);
-		if (!getPredicatesAnd().isEmpty())
-			getSql().append(getParametrosWebWhereAnd().build(getClazz(), getParametrosWebAnd(), getPredicatesAnd()));
-		if (!getPredicatesOr().isEmpty())
-			getSql().append(getParametrosWebWhereOr().build(getClazz(), getParametrosWebOr(), getPredicatesOr()));
-		if (!getPredicatesAnd().isEmpty() && !getPredicatesOr().isEmpty())
-			setSql(getSql().toString().replace("where (", "and ("));
-		return getSql().toString();
+		Collection<Object> where = new ArrayList<Object>();
+		this.clazz = (Class) parametros[0];
+		List<ParametrosWeb> parametrosWeb = (List<ParametrosWeb>) parametros[1];
+		if (new ParametrosWebValidator().validaWhere(parametrosWeb.get(0).getCampo(), parametrosWeb.get(0).getParametroInicial())) {
+			where.add(where());
+			where.addAll(executeWhere(parametrosWeb));
+		}
+		where.addAll(new ParametrosWebOrderBy().build(parametrosWeb));
+		return where;
 	}
 	
-	private void setCamposParametros(List<ParametrosWeb> parametrosWeb) {
+	private Collection<String> executeWhere(List<ParametrosWeb> parametrosWeb) {
+		ArrayList<String> parametros = new ArrayList<String>();
+		pegaParametros(parametrosWeb);
+		parametros.addAll(criaWhere(this.parametrosAnd, this.parametrosOr));
+		return parametros;
+	}
+	
+	private Collection criaWhere(List<List<String>> parametrosAnd, List<List<String>> parametrosOr) {
+		// TODO Auto-generated method stub
+		ArrayList<String> parametros = new ArrayList<String>();
+		if (parametrosAnd != null && !parametrosAnd.isEmpty())
+			parametros.addAll(new ParametrosWebWhereAnd().build("and", parametrosAnd, (parametrosOr != null && !parametrosOr.isEmpty())));
+		if (parametrosOr != null && !parametrosOr.isEmpty())
+			parametros.addAll(new ParametrosWebWhereOr().build("or", parametrosOr));
+		return parametros;
+	}
+
+	private void pegaParametros(List<ParametrosWeb> parametrosWeb) {
 		parametrosWeb.forEach(parametro -> {
 			List<String> predicate = new ArrayList<String>();
 			predicate.add(parametro.getCampo());
+			try {
+				predicate.add(ClassFunction.getTypeAttribute(this.clazz, parametro.getCampo()));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				throw new ParametrosWebExpection("Não foi possível obter o tipo do campo: " + parametro.getCampo());
+			}
 			predicate.add(parametro.getParametroInicial());
 			predicate.add(parametro.getParametroFinal());
-			if (parametro.getJuncao().equals("and"))
-				this.predicatesAnd.add(predicate);
+			predicate.add(parametro.getOperador());
+			if (parametro.getJuncao() != null && parametro.getJuncao().equals("or"))
+				this.parametrosOr.add(predicate);
 			else
-				this.predicatesOr.add(predicate);
+				this.parametrosAnd.add(predicate);	
 		});
 	}
 	
-	private void setParametrosWeb(List<ParametrosWeb> parametrosWeb) {
-		parametrosWeb.forEach(parametro -> {
-			if (parametro.getJuncao().equals("and"))
-				this.parametrosWebAnd.add(parametro);
-			else
-				this.parametrosWebOr.add(parametro);
-		});
+	private String where() {
+		return "where";
 	}
 	
 }

@@ -1,25 +1,56 @@
 package br.com.mhc.parametrosweb;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class ParametrosWebOrderBy extends ParametrosWebSQLDefault {
+public class ParametrosWebOrderBy implements ParametrosWebSQL {
 
-	public ParametrosWebOrderBy() {
-		// TODO Auto-generated constructor stub
-		getSql().append(" order by");
+	@Override
+	public Collection build(Object... parametros) {
+		// TODO Auto-generated method stub
+		Collection<Object> orderBy = new ArrayList<Object>();
+		List<ParametrosWeb> parametrosWeb = (List<ParametrosWeb>) parametros[0];
+		int qtdOrderBy = 0;
+		orderBy.add(orderBy());
+		if (new ParametrosWebValidator().validaOrderBy(parametrosWeb.get(0).getCampo())) {
+			for (int i = 0; i < parametrosWeb.size(); i++) {
+				if (qtdOrderBy > 0)
+					orderBy.add(",");
+				if (parametrosWeb.get(i).getOrderBy() != null) {
+					if (!orderBy.contains(campo(parametrosWeb.get(i).getOrderBy()))) {
+						orderBy.add(campo(parametrosWeb.get(i).getOrderBy()));
+						qtdOrderBy++;
+					}
+				} else {
+					if (!orderBy.contains(campo("id"))) {
+						orderBy.add(campo("id"));
+						qtdOrderBy++;
+					}
+				}
+			}
+		} else {
+			orderBy.add(campo("id"));
+		}
+		return orderBy;
 	}
 	
-	@Override
-	public String build(List<ParametrosWeb> parametrosWeb) {
-		// TODO Auto-generated method stub
-		List<String> orderBy = new ArrayList<String>();
-		for(ParametrosWeb parametro : parametrosWeb) {
-			if (!orderBy.contains(" a." + parametro.getOrderBy()))
-				orderBy.add(" a." + parametro.getOrderBy());
-		}
-		orderBy.forEach(order -> getSql().append(order).append(","));
-		return getSql().toString().substring(0, getSql().lastIndexOf(","));
+	private String alias() {
+		return "a.";
+	}
+	
+	private String campo(String campo) {
+		return alias().concat(campo);
+	}
+	
+	private String orderBy() {
+		return "order by";
+	}
+	
+	private boolean ultimoParametro(int atual, int total) {
+		// Adicionado + 1 no atual pois os parâmetros estão vindo de um for,
+		// onde: atual começa em 0 e total começa em 1
+		return (atual + 1) == total;
 	}
 
 }

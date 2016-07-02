@@ -7,8 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 
+@NamedNativeQuery(
+	name = "buscaPessoa",
+	query = "select pes.* from pessoa pes where datacadastro >= ?0 and datacadastro <= ?1",
+	resultClass = Pessoa.class
+)
 @Entity
 @Table(name = "pessoa")
 public class Pessoa implements Serializable {

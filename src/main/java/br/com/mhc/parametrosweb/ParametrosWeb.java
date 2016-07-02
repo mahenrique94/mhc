@@ -48,7 +48,7 @@ public class ParametrosWeb {
 		this.juncao = juncao;
 		this.orderBy = orderBy;
 	}
-	public ParametrosWeb(String campo, String parametroInicial, String parametroFinal, String operador, String juncao, String orderBy, Integer limit) {
+	public ParametrosWeb(String campo, String parametroInicial, String parametroFinal, String operador, String juncao, String orderBy, int limit) {
 		// TODO Auto-generated constructor stub
 		this.campo = campo;
 		this.parametroInicial = parametroInicial;
@@ -84,19 +84,19 @@ public class ParametrosWeb {
 		this.operador = operador;
 	}
 	public String getJuncao() {
-		return juncao != null ? juncao : "and";
+		return juncao;
 	}
 	public void setJuncao(String juncao) {
 		this.juncao = juncao;
 	}
 	public String getOrderBy() {
-		return orderBy != null ? orderBy : "id";
+		return orderBy;
 	}
 	public void setOrderBy(String orderBy) {
 		this.orderBy = orderBy;
 	}
 	public Integer getLimit() {
-		return limit != null ? limit : 100;
+		return limit;
 	}
 	public void setLimit(Integer limit) {
 		this.limit = limit;

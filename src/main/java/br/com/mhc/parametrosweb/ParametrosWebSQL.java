@@ -1,9 +1,9 @@
 package br.com.mhc.parametrosweb;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface ParametrosWebSQL {
 
-	String build(List<ParametrosWeb> parametrosWeb);
+	Collection build(Object... parametros);
 	
 }
