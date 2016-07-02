@@ -28,7 +28,7 @@ public class ParametrosWebGerenciadorTarefas {
 				t.join();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new ParametrosWebExpection("Não foi possível fazer o join das threads do gerenciador de tarefas");
 			}
 		}
 	}
