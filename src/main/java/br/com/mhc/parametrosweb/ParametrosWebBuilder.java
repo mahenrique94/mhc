@@ -9,7 +9,7 @@ public class ParametrosWebBuilder {
 	private List<ParametrosWeb> parametrosWeb;
 	private Queue<Object> atributos = new ArrayBlockingQueue(100);
 
-	public void from(Class<?> clazz) {
+	public void init(Class<?> clazz) {
 		ParametrosWebGerenciadorTarefas gerenciador = new ParametrosWebGerenciadorTarefas(this.atributos, clazz, this.parametrosWeb);
 		gerenciador.execute();
 	}
@@ -17,7 +17,7 @@ public class ParametrosWebBuilder {
 	public String createQuery(Class<?> clazz, List<ParametrosWeb> parametrosWeb) {
 		this.parametrosWeb = parametrosWeb;
 		if (new ParametrosWebValidator().validaFrom(clazz))
-			from(clazz);
+			init(clazz);
 		return new ParametrosWebFactory().create(this.atributos);
 	}
 	
