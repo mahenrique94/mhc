@@ -10,7 +10,7 @@ public class ParametrosWebFactory {
 			SQL.append(atributos.poll());
 			SQL.append(" ");
 		}
-		return SQL.toString();
+		return SQL.toString().replaceAll("[,\\s]+$", "");
 	}
 	
 }

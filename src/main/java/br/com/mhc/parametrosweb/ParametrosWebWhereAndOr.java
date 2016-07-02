@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public abstract class ParametrosWebWhereAndOr implements ParametrosWebSQL {
+public abstract class ParametrosWebWhereAndOr {
 
-	protected final int posicaoAndOr = 0;
-	protected final int posicaoPredicates = 1;
-	protected final int posicaoIsOr = 2;
+	protected final int posicaoAndOr = 0; // And oo Or
+	protected final int posicaoPredicates = 1; // List<Listr<String>> referente aos parametrosAnd ou parametrosOr
+	protected final int posicaoIsOr = 2; // True ou False
 	
-	@Override
 	public Collection build(Object... parametros) {
 		// TODO Auto-generated method stub
 		Collection<Object> where = new ArrayList<Object>();

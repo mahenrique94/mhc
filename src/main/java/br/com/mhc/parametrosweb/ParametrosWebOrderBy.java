@@ -3,36 +3,54 @@ package br.com.mhc.parametrosweb;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Queue;
 
 public class ParametrosWebOrderBy implements ParametrosWebSQL {
 
+	private Queue<Object> atributos;
+	private final Object[] parametros;
+
+	public ParametrosWebOrderBy(Queue<Object> atributos, Object... parametros) {
+		// TODO Auto-generated constructor stub
+		this.atributos = atributos;
+		this.parametros = parametros;
+	}
+	
 	@Override
-	public Collection build(Object... parametros) {
+	public void build() {
 		// TODO Auto-generated method stub
 		Collection<Object> orderBy = new ArrayList<Object>();
 		List<ParametrosWeb> parametrosWeb = (List<ParametrosWeb>) parametros[0];
-		int qtdOrderBy = 0;
-		orderBy.add(orderBy());
+		boolean adicionaVirgula = false;
 		if (new ParametrosWebValidator().validaOrderBy(parametrosWeb.get(0).getCampo())) {
+			orderBy.add(orderBy());
 			for (int i = 0; i < parametrosWeb.size(); i++) {
-				if (qtdOrderBy > 0)
-					orderBy.add(",");
 				if (parametrosWeb.get(i).getOrderBy() != null) {
 					if (!orderBy.contains(campo(parametrosWeb.get(i).getOrderBy()))) {
 						orderBy.add(campo(parametrosWeb.get(i).getOrderBy()));
-						qtdOrderBy++;
+						adicionaVirgula = true;
 					}
 				} else {
 					if (!orderBy.contains(campo("id"))) {
 						orderBy.add(campo("id"));
-						qtdOrderBy++;
+						adicionaVirgula = true;
 					}
+				}
+				if (adicionaVirgula) {
+					orderBy.add(",");
+					adicionaVirgula = false;
 				}
 			}
 		} else {
 			orderBy.add(campo("id"));
 		}
-		return orderBy;
+		this.atributos.addAll(orderBy);
+	}
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		build();
 	}
 	
 	private String alias() {

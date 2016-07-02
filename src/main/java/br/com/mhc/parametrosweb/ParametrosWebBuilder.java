@@ -1,16 +1,17 @@
 package br.com.mhc.parametrosweb;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
 
 public class ParametrosWebBuilder {
 	
 	private List<ParametrosWeb> parametrosWeb;
-	private Queue<Object> atributos = new LinkedList<Object>();
+	private Queue<Object> atributos = new ArrayBlockingQueue(100);
 
 	public void from(Class<?> clazz) {
-		this.atributos.addAll(new ParametrosWebFrom().build(clazz, this.parametrosWeb));
+		ParametrosWebGerenciadorTarefas gerenciador = new ParametrosWebGerenciadorTarefas(this.atributos, clazz, this.parametrosWeb);
+		gerenciador.execute();
 	}
 	
 	public String createQuery(Class<?> clazz, List<ParametrosWeb> parametrosWeb) {

@@ -3,6 +3,7 @@ package br.com.mhc.parametrosweb;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Queue;
 
 import br.com.mhc.function.ClassFunction;
 
@@ -11,19 +12,32 @@ public class ParametrosWebWhere implements ParametrosWebSQL {
 	private List<List<String>> parametrosAnd = new ArrayList<List<String>>();
 	private List<List<String>> parametrosOr = new ArrayList<List<String>>();
 	private Class<?> clazz;
+	private Queue<Object> atributos;
+	private final Object[] parametros;
+	
+	public ParametrosWebWhere(Queue<Object> atributos, Object... parametros) {
+		// TODO Auto-generated constructor stub
+		this.atributos = atributos;
+		this.parametros = parametros;
+	}
 	
 	@Override
-	public Collection build(Object... parametros) {
+	public void build() {
 		// TODO Auto-generated method stub
 		Collection<Object> where = new ArrayList<Object>();
-		this.clazz = (Class) parametros[0];
-		List<ParametrosWeb> parametrosWeb = (List<ParametrosWeb>) parametros[1];
+		this.clazz = (Class) this.parametros[0]; // 0 = Class
+		List<ParametrosWeb> parametrosWeb = (List<ParametrosWeb>) this.parametros[1]; // 1 = List<ParametrosWeb>
 		if (new ParametrosWebValidator().validaWhere(parametrosWeb.get(0).getCampo(), parametrosWeb.get(0).getParametroInicial())) {
 			where.add(where());
 			where.addAll(executeWhere(parametrosWeb));
 		}
-		where.addAll(new ParametrosWebOrderBy().build(parametrosWeb));
-		return where;
+		this.atributos.addAll(where);
+	}
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		build();
 	}
 	
 	private Collection<String> executeWhere(List<ParametrosWeb> parametrosWeb) {
@@ -42,7 +56,7 @@ public class ParametrosWebWhere implements ParametrosWebSQL {
 			parametros.addAll(new ParametrosWebWhereOr().build("or", parametrosOr));
 		return parametros;
 	}
-
+	
 	private void pegaParametros(List<ParametrosWeb> parametrosWeb) {
 		parametrosWeb.forEach(parametro -> {
 			List<String> predicate = new ArrayList<String>();
@@ -66,5 +80,5 @@ public class ParametrosWebWhere implements ParametrosWebSQL {
 	private String where() {
 		return "where";
 	}
-	
+
 }

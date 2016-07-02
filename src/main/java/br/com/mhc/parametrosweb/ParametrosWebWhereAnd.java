@@ -3,6 +3,7 @@ package br.com.mhc.parametrosweb;
 import java.util.Collection;
 
 
+
 public class ParametrosWebWhereAnd extends ParametrosWebWhereAndOr {
 
 	@Override
