@@ -8,15 +8,15 @@ public class Email {
 	private String subject;
 	private String message;
 	
+	public Email() {
+		// TODO Auto-generated constructor stub
+	}
 	public Email(String from, String to, String subject, String message) {
 		// TODO Auto-generated constructor stub
 		this.from = from;
 		this.to = to;
 		this.subject = subject;
 		this.message = message;
-	}
-	public Email() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getFrom() {

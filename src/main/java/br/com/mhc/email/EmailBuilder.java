@@ -72,7 +72,7 @@ public class EmailBuilder {
 
 	private Properties getProperties() {
 		try {
-			this.properties.load(new FileInputStream("email.properties"));
+			this.properties.load(new FileInputStream("src/main/resources/email.properties"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
