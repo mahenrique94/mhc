@@ -38,8 +38,13 @@ public class ParametrosWebOperadorFactory {
 					return new ParametrosWebOperadorMenorIgualCalendar();
 				return new ParametrosWebOperadorMenorIgual();
 			}
+			if (operador.equals("<>")) {
+				if (type.equals("Calendar"))
+					return new ParametrosWebOperadorDiferenteCalendar();
+				return new ParametrosWebOperadorDiferente();
+			}
 		} else {
-			if ((type.equals("Integer") || type.equals("Long") || type.equals("Double") || type.equals("Boolean")) && parametroFinal != null)
+			if ((type.equals("Integer") || type.equals("Long") || type.equals("Double")) && parametroFinal != null)
 				return new ParametrosWebOperadorMaiorIgual();
 			if (type.equals("Calendar") && parametroFinal != null)
 				return new ParametrosWebOperadorMaiorIgualCalendar();
