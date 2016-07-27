@@ -14,4 +14,8 @@ public class NumberFunction {
 		return resultado;
 	}
 	
+	public static double round(double valor) {
+		return Math.round(valor * 100.0) / 100.0;
+	}
+	
 }
