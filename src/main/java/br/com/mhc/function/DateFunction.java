@@ -9,6 +9,10 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+/** @auth Matheus Castiglioni
+ *  Classe responsável por definir todas as funções realizadas com Datas,
+ *  todos os métodos são estáticos para que não haja a necessidade de instanciar a classe para usá-los
+ */
 public class DateFunction {
 
 	/** @auth Matheus Castiglioni

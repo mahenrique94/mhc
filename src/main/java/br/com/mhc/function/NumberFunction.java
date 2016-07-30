@@ -2,6 +2,10 @@ package br.com.mhc.function;
 
 import br.com.mhc.cript.Function;
 
+/** @auth Matheus Castiglioni
+ *  Classe responsável por definir todas as funções realizadas com Números,
+ *  todos os métodos são estáticos para que não haja a necessidade de instanciar a classe para usá-los
+ */
 public class NumberFunction {
 
 	/** @auth Matheus Castiglioni

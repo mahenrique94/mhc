@@ -1,5 +1,9 @@
 package br.com.mhc.function;
 
+/** @auth Matheus Castiglioni
+ *  Classe responsável por definir todas as funções realizadas com String's,
+ *  todos os métodos são estáticos para que não haja a necessidade de instanciar a classe para usá-los
+ */
 public class StringFunction {
 	
 	/** @auth Matheus Castiglioni
