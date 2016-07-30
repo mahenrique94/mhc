@@ -2,8 +2,11 @@ package br.com.mhc.parametrosweb;
 
 import java.util.Collection;
 
-
-
+/** @auth Matheus Castiglioni
+ *  Classe responsável por construir os parâmetros da SQL quando a junção se trata de um AND,
+ *  separei as responsabilidades em classes diferentes pois quando se trata de AND os parâmetros não devem estar dentro de ()
+ *  Ex: campo1 = valor1 and campo2 > valor2
+ */
 public class ParametrosWebWhereAnd extends ParametrosWebWhereAndOr {
 
 	@Override

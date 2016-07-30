@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/** @auth Matheus Castiglioni
+ *  Classe responsável por agrupar métodos que serão utilizados tantos para construção dos parâmetros AND e OR
+ *  como os métodos são semelhantes as duas classes @ParametrosWebWhereAnd e @ParametrosWebWhereOr utilizam os métodos
+ *  dessa classe
+ */
 public abstract class ParametrosWebWhereAndOr {
 
 	protected final int posicaoAndOr = 0; // And oo Or

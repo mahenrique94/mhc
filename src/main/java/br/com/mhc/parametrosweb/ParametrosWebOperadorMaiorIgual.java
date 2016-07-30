@@ -5,6 +5,12 @@ import java.util.Collection;
 
 import br.com.mhc.function.DateFunction;
 
+/** @auth Matheus Castiglioni
+ *  Classe responsável por pegar o parâmetro >=,
+ *  separei esse parâmetro pois quando não se trata de Calendar o mesmo não deve ser passado entre ',
+ *  caso o parâmetroFinal tenha valor o mesmo será devolvido também(Ex: campo1 >= 10 and campo1 <= 10)
+ *  senão será devolvido apenas o parametroInicial(Ex: campo1 >= 10)
+ */
 public class ParametrosWebOperadorMaiorIgual implements ParametrosWebOperador {
 
 	@Override

@@ -3,6 +3,10 @@ package br.com.mhc.parametrosweb;
 import java.util.Arrays;
 import java.util.Collection;
 
+/** @auth Matheus Castiglioni
+ *  Classe responsável por pegar o parâmetro like adicionado sempre % para que a busca seja feita em qualquer parte do campo,
+ *  Ex: campo1 like '%valor1%'
+ */
 public class ParametrosWebOperadorLike implements ParametrosWebOperador {
 
 	@Override

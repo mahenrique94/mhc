@@ -1,5 +1,9 @@
 package br.com.mhc.parametrosweb;
 
+/** @auth Matheus Castiglioni
+ *  Classe responsável por descobrir qual o parâmetro devolver de acordo com o operador, tipo e parametroFinal informados
+ *  na construção do ParametrosWeb
+ */
 public class ParametrosWebOperadorFactory {
 
 	public static ParametrosWebOperador cria(String operador, String type, String parametroFinal) {

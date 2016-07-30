@@ -7,6 +7,10 @@ import java.util.Queue;
 
 import br.com.mhc.function.ClassFunction;
 
+/** @auth Matheus Castiglioni
+ *  Classe responsável por construir todos os parâmetros, condições e operadores do where
+ *  Ex: where campo1 > valor1 and campo2 <> valor2
+ */
 public class ParametrosWebWhere implements ParametrosWebSQL {
 
 	private List<List<String>> parametrosAnd = new ArrayList<List<String>>();

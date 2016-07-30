@@ -5,6 +5,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Queue;
 
+/** @auth Matheus Castiglioni
+ *  Classe responsável por pegar a tabela que irá ser feito a busca da SQL
+ */
 public class ParametrosWebFrom implements ParametrosWebSQL {
 
 	private Queue<Object> atributos;

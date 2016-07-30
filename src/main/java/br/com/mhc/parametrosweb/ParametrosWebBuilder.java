@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
+/** @auth Matheus Castiglioni
+ *  Classe responsável por iniciar todo o processo de criação da SQL, somente ela será visível publicamente para os
+ *  métodos em projetos
+ */
 public class ParametrosWebBuilder {
 	
 	private List<ParametrosWeb> parametrosWeb;

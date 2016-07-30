@@ -3,6 +3,9 @@ package br.com.mhc.parametrosweb;
 import java.util.Arrays;
 import java.util.Collection;
 
+/** @auth Matheus Castiglioni
+ *  Classe responsável por pegar o parâmetro is null,
+ */
 public class ParametrosWebOperadorIsNull implements ParametrosWebOperador {
 
 	@Override

@@ -5,6 +5,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Queue;
 
+/** @auth Matheus Castiglioni
+ *  Classe responsável por construir todos os campos que estarão no order by da SQL
+ *  Ex: order by campo1, campo2, campo3 desc...
+ */
 public class ParametrosWebOrderBy implements ParametrosWebSQL {
 
 	private Queue<Object> atributos;

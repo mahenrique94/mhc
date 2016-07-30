@@ -1,5 +1,8 @@
 package br.com.mhc.parametrosweb;
 
+/** @auth Matheus Castiglioni
+ *  Classe responsável por agrupar todas as validações durante o processo de construção da SQL
+ */
 public class ParametrosWebValidator {
 
 	public boolean validaFrom(Class<?> clazz) {

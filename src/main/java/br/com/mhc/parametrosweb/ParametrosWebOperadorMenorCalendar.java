@@ -5,6 +5,11 @@ import java.util.Collection;
 
 import br.com.mhc.function.DateFunction;
 
+/** @auth Matheus Castiglioni
+ *  Classe responsável por pegar o parâmetro < para o tipo Calendar,
+ *  separei esse parâmetro pois quando se trata de Calendar o mesmo deve ser passado entre '
+ *  Ex: campo1 < '1994-05-25'
+ */
 public class ParametrosWebOperadorMenorCalendar implements ParametrosWebOperador {
 
 	@Override

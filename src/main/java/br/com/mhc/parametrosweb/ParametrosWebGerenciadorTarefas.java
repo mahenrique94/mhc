@@ -3,6 +3,9 @@ package br.com.mhc.parametrosweb;
 import java.util.List;
 import java.util.Queue;
 
+/** @auth Matheus Castiglioni
+ *  Classe responsável definir e iniciar todas as tarefas realizadas para se obter a SQL final,
+ */
 public class ParametrosWebGerenciadorTarefas {
 
 	private Queue<Object> atributos;

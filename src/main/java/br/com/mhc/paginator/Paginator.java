@@ -1,5 +1,10 @@
 package br.com.mhc.paginator;
 
+/** @auth Matheus Castiglioni
+ *  Classe utilizada para fazer paginação em sites
+ *  Utilizo ela em meus GenericController, onde ele controla quantas páginas determinado SQL result irá mostrar e
+ *  quantos resultados serão mostrados por páginas
+ */
 public class Paginator {
 
 	private Integer currentPage;
@@ -8,9 +13,7 @@ public class Paginator {
 	private Integer first;
 	private Integer interval;
 
-	public Paginator() {
-		
-	}
+	public Paginator() {}
 	public Paginator(Integer currentPage, Integer pages, Integer records, Integer first, Integer interval) {
 		this.currentPage = currentPage;
 		this.pages = pages;

@@ -1,5 +1,8 @@
 package br.com.mhc.parametrosweb;
 
+/** @auth Matheus Castiglioni
+ *  Classe responsável por definir todos os possíveis parâmetros, campos, operadores, junções, order by e limit da SQL final
+ */
 public class ParametrosWeb {
 
 	private String campo;

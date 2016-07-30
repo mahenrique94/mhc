@@ -10,6 +10,10 @@ import java.util.Iterator;
 import java.util.Properties;
 import java.util.Set;
 
+/** @auth Matheus Castiglioni
+ *  Classe responsável por fazer uma requisição em determinada URL e devolver o conteúdo da página, ela pega todo o 
+ *  page source e o retorna como String
+ */
 public class HttpRequest {
 	
 	private String urlRequest;
@@ -57,18 +61,6 @@ public class HttpRequest {
 		return result;
 	}
 	
-	public String getResponseRequest() throws IOException {
-		this.urlBuilder();
-		this.connect();
-		this.br = new BufferedReader(new InputStreamReader(this.getConnection().getInputStream()));
-		while(null != ((this.response = br.readLine()))) {
-			this.response = this.response.trim();
-			this.getResult().append(this.response);
-		}
-		this.br.close();
-		return new String(this.getResult());
-	}
-	
 	private void urlBuilder() {
 		Iterator i = this.getParameters().keySet().iterator();
 		while (i.hasNext()) {
@@ -89,6 +81,18 @@ public class HttpRequest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public String getResponseRequest() throws IOException {
+		this.urlBuilder();
+		this.connect();
+		this.br = new BufferedReader(new InputStreamReader(this.getConnection().getInputStream()));
+		while(null != ((this.response = br.readLine()))) {
+			this.response = this.response.trim();
+			this.getResult().append(this.response);
+		}
+		this.br.close();
+		return new String(this.getResult());
 	}
 	
 }
