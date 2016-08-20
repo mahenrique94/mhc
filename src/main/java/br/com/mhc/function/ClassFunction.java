@@ -1,6 +1,7 @@
 package br.com.mhc.function;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 
 /** @auth Matheus Castiglioni
  *  Classe responsável por definir todas as funções realizadas com Classes,
@@ -42,6 +43,72 @@ public class ClassFunction {
 			// TODO Auto-generated catch block
 			throw new RuntimeException("Não foi possível invocar o construtor default da classe" + clazz.getSimpleName());
 		}
+	}
+	
+	/** @auth Matheus Castiglioni
+	 *  Invoca o construtor padrão(sem argumentos) de uma determinada classe e caso a mesma possua outras classes como
+	 *  atributo também será invocado o construtor delas
+	 *  @param clazz - Classe referência para o construtor ser invocado
+	 *  @return obj - Retorna uma instancia da classe com apenas a execução do construtor padrão
+	 *  @example ClassFunction.invokeConstructorDefaultChild(Pessoa.class)
+	 *  @result Um obj do tipo Pessoa
+	 */
+	public static Object invokeConstructorDefaultChild(Class clazz) {
+		Object obj = invokeConstructorDefault(clazz);
+		Field[] fields = clazz.getDeclaredFields();
+		for (Field field : fields) {
+			if (field.getType().getTypeName().contains("model"))
+				try {
+					field.setAccessible(true);
+					field.set(obj, invokeConstructorDefault(field.getType()));
+					invokeConstructorDefaultChild(field.getType());
+				} catch (IllegalArgumentException | IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+		return obj;
+	}
+	
+	/** @auth Matheus Castiglioni
+	 *  Devolve uma nova instancia de uma determinada classe
+	 *  @param clazz - Classe referência para ser instanciada
+	 *  @return obj - Retorna uma nova instancia da classe
+	 *  @example ClassFunction.newInstance(Pessoa.class)
+	 *  @result Um obj do tipo Pessoa
+	 */
+	public static Object newInstance(Class clazz) {
+		try {
+			return clazz.newInstance();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException("Não foi possível invocar o construtor default da classe" + clazz.getSimpleName());
+		}
+	}
+	
+	/** @auth Matheus Castiglioni
+	 *  Instância uma determinada classe e caso a mesma possua outras classes como
+	 *  atributo elas também serão instanciadas
+	 *  @param clazz - Classe referência para ser instanciada
+	 *  @return obj - Retorna uma instancia da classe instanciada
+	 *  @example ClassFunction.invokeConstructorDefaultChild(Pessoa.class)
+	 *  @result Um obj do tipo Pessoa
+	 */
+	public static Object newInstanceChild(Class clazz) {
+		Object obj = newInstance(clazz);
+		Field[] fields = clazz.getDeclaredFields();
+		for (Field field : fields) {
+			if (field.getType().getTypeName().contains("model"))
+				try {
+					field.setAccessible(true);
+					field.set(obj, newInstance(field.getType()));
+					invokeConstructorDefaultChild(field.getType());
+				} catch (IllegalArgumentException | IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+		return obj;
 	}
 	
 }

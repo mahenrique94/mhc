@@ -33,6 +33,7 @@ public class PessoaEndereco implements Serializable {
 	}
 	public PessoaEndereco() {
 		// TODO Auto-generated constructor stub
+		setDatacadastro(Calendar.getInstance());
 	}
 	
 	public Integer getId() {
