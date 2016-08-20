@@ -1,5 +1,7 @@
 package br.com.mhc.function;
 
+import java.lang.reflect.Constructor;
+
 /** @auth Matheus Castiglioni
  *  Classe responsável por definir todas as funções realizadas com Classes,
  *  todos os métodos são estáticos para que não haja a necessidade de instanciar a classe para usá-los
@@ -23,6 +25,23 @@ public class ClassFunction {
 			clazz = clazz.getDeclaredField(fields[i]).getType();
 		}
 		return type;
+	}
+	
+	/** @auth Matheus Castiglioni
+	 *  Invoca o construtor padrão(sem argumentos) de uma determinada classe
+	 *  @param clazz - Classe referência para o construtor ser invocado
+	 *  @return obj - Retorna uma instancia da classe com apenas a execução do construtor padrão
+	 *  @example ClassFunction.invokeConstructorDefault(Pessoa.class)
+	 *  @result Um obj do tipo Pessoa
+	 */
+	public static Object invokeConstructorDefault(Class clazz) {
+		try {
+			Constructor constructor = clazz.getConstructor();
+			return constructor.newInstance();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException("Não foi possível invocar o construtor default da classe" + clazz.getSimpleName());
+		}
 	}
 	
 }

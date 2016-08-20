@@ -29,6 +29,7 @@ public class Pessoa implements Serializable {
 	
 	public Pessoa() {
 		// TODO Auto-generated constructor stub
+		setDatacadastro(Calendar.getInstance());
 	}
 	public Pessoa(Integer id, String nome, Integer idade, String sexo, Calendar datacadastro) {
 		this.id = id;
