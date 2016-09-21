@@ -10,9 +10,9 @@ import br.com.mhc.model.PessoaEndereco;
 public class InvokeConstructor {
 	
 	public static void main(String[] args) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		PessoaEndereco endereco = (PessoaEndereco) ClassFunction.invokeConstructorDefaultChild(PessoaEndereco.class);
-		System.out.println(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(endereco.getDatacadastro().getTime()));
-		System.out.println(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(endereco.getIdpessoa().getDatacadastro().getTime()));
+		Pessoa pessoa = new Pessoa("Matheus");
+		ClassFunction.invokeConstructorDefault(Pessoa.class);
+		System.out.println(new SimpleDateFormat("dd/MM/yyyy").format(pessoa.getDatacadastro().getTime()));
 	}
 
 }
