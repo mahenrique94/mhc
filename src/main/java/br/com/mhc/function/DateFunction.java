@@ -88,13 +88,49 @@ public class DateFunction {
 	}
 	
 	/** @auth Matheus Castiglioni
-	 *  Pega uma string e converte para o tipo Calendar
+	 *  Pega uma string e converte para o tipo Calendar, apenas com a data
 	 *  @param s - Data no formato String a ser convertida para Calendar
-	 *  @return dataParse - Data convertido de String para Calendar
-	 *  @example DateFunction.stringToCalendar("1994-05-25");
+	 *  @return dataParse - Data convertida de String para Calendar
+	 *  @example DateFunction.stringWithDateToCalendar("1994-05-25");
 	 */
-	public static Calendar stringToCalendar(String s) {
+	public static Calendar stringWithDateToCalendar(String s) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date dataParse = null;
+		try {
+			dataParse = sdf.parse(s);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return sdf.getCalendar();
+	}
+	
+	/** @auth Matheus Castiglioni
+	 *  Pega uma string e converte para o tipo Calendar, apenas com a hora
+	 *  @param s - Hora no formato String a ser convertida para Calendar
+	 *  @return dataParse - Hora convertida de String para Calendar
+	 *  @example DateFunction.stringWithHourToCalendar("00:00");
+	 */
+	public static Calendar stringWithHourToCalendar(String s) {
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+		Date dataParse = null;
+		try {
+			dataParse = sdf.parse(s);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return sdf.getCalendar();
+	}
+	
+	/** @auth Matheus Castiglioni
+	 *  Pega uma string e converte para o tipo Calendar, com data e hora
+	 *  @param s - Data e hora no formato String a ser convertida para Calendar
+	 *  @return dataParse - Data e hora convertida de String para Calendar
+	 *  @example DateFunction.stringWithDateHourToCalendar("1994-05-25 00:00");
+	 */
+	public static Calendar stringWithDateHourToCalendar(String s) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Date dataParse = null;
 		try {
 			dataParse = sdf.parse(s);
