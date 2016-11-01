@@ -88,13 +88,67 @@ public class DateFunction {
 	}
 	
 	/** @auth Matheus Castiglioni
-	 *  Pega uma string e converte para o tipo Calendar, apenas com a data
+	 *  Pega uma string e converte para o tipo Calendar, apenas com a data no formato americano
 	 *  @param s - Data no formato String a ser convertida para Calendar
 	 *  @return dataParse - Data convertida de String para Calendar
-	 *  @example DateFunction.stringWithDateToCalendar("1994-05-25");
+	 *  @example DateFunction.stringFromAmericanWithDateToCalendar("1994-05-25");
 	 */
-	public static Calendar stringWithDateToCalendar(String s) {
+	public static Calendar stringFromAmericanWithDateToCalendar(String s) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date dataParse = null;
+		try {
+			dataParse = sdf.parse(s);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return sdf.getCalendar();
+	}
+	
+	/** @auth Matheus Castiglioni
+	 *  Pega uma string e converte para o tipo Calendar, apenas com a data no formato brasileiro
+	 *  @param s - Data no formato String a ser convertida para Calendar
+	 *  @return dataParse - Data convertida de String para Calendar
+	 *  @example DateFunction.stringFromBrazilianWithDateToCalendar("25/05/1994");
+	 */
+	public static Calendar stringFromBrazilianWithDateToCalendar(String s) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date dataParse = null;
+		try {
+			dataParse = sdf.parse(s);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return sdf.getCalendar();
+	}
+	
+	/** @auth Matheus Castiglioni
+	 *  Pega uma string e converte para o tipo Calendar, com data e hora no formato americano
+	 *  @param s - Data e hora no formato String a ser convertida para Calendar
+	 *  @return dataParse - Data e hora convertida de String para Calendar
+	 *  @example DateFunction.stringFromAmericanWithDateHourToCalendar("1994-05-25 00:00");
+	 */
+	public static Calendar stringFromAmericanWithDateHourToCalendar(String s) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		Date dataParse = null;
+		try {
+			dataParse = sdf.parse(s);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return sdf.getCalendar();
+	}
+	
+	/** @auth Matheus Castiglioni
+	 *  Pega uma string e converte para o tipo Calendar, com data e hora no formato americano
+	 *  @param s - Data e hora no formato String a ser convertida para Calendar
+	 *  @return dataParse - Data e hora convertida de String para Calendar
+	 *  @example DateFunction.stringFromBrazilianWithDateHourToCalendar("25/05/1994 00:00");
+	 */
+	public static Calendar stringFromBrazilianWithDateHourToCalendar(String s) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Date dataParse = null;
 		try {
 			dataParse = sdf.parse(s);
@@ -109,28 +163,10 @@ public class DateFunction {
 	 *  Pega uma string e converte para o tipo Calendar, apenas com a hora
 	 *  @param s - Hora no formato String a ser convertida para Calendar
 	 *  @return dataParse - Hora convertida de String para Calendar
-	 *  @example DateFunction.stringWithHourToCalendar("00:00");
+	 *  @example DateFunction.stringFromAmericanWithHourToCalendar("00:00");
 	 */
 	public static Calendar stringWithHourToCalendar(String s) {
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-		Date dataParse = null;
-		try {
-			dataParse = sdf.parse(s);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return sdf.getCalendar();
-	}
-	
-	/** @auth Matheus Castiglioni
-	 *  Pega uma string e converte para o tipo Calendar, com data e hora
-	 *  @param s - Data e hora no formato String a ser convertida para Calendar
-	 *  @return dataParse - Data e hora convertida de String para Calendar
-	 *  @example DateFunction.stringWithDateHourToCalendar("1994-05-25 00:00");
-	 */
-	public static Calendar stringWithDateHourToCalendar(String s) {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Date dataParse = null;
 		try {
 			dataParse = sdf.parse(s);
