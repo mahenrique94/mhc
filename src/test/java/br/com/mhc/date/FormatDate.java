@@ -8,10 +8,9 @@ import br.com.mhc.function.DateFunction;
 public class FormatDate {
 
 	public static void main(String[] args) throws Exception {
-		String dataString = "25/05/2016";
+		String dataString = "25/05/2016 10:00";
 		Calendar data = Calendar.getInstance();
-		SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
-		
+		SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
 		System.out.println(DateFunction.formatBrazilianToAmerican(dataString));
 	}

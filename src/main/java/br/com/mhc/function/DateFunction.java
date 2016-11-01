@@ -25,12 +25,23 @@ public class DateFunction {
 	public static String formatBrazilianToAmerican(String s) {
 		List<String> compose = Arrays.asList(s.split("/"));
 		StringBuilder dataFinal = new StringBuilder();
+		String hora = null;
 		Collections.reverse(compose);
+		// Verificando se a data possui hora, caso possua eu seto a variável hora para utiliza-la no final do método
+		if (compose.get(0).indexOf(":") > 0)
+			hora = compose.get(0).split(" ")[1];
 		for (int i = 0; i < compose.size(); i++) {
-			dataFinal.append(compose.get(i));
+			// Verificando se a a data possui hora, caso possua eu separo o ano da hora para poder inseri-lo
+			if (compose.get(0).indexOf(":") > 0)
+				dataFinal.append(compose.get(i).split(" ")[0]);
+			else
+				dataFinal.append(compose.get(i));
+			
 			if (i < (compose.size() - 1))
 				dataFinal.append("-");
 		}
+		if (hora != null)
+			dataFinal.append(" " + hora);
 		return dataFinal.toString();
 	}
 	
