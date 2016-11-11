@@ -111,4 +111,24 @@ public class ClassFunction {
 		return obj;
 	}
 	
+	/** @auth Matheus Castiglioni
+	 *  Pega o valor de um campo via Reflection de acordo com o objeto e nome passado
+	 *  @param obj - Objeto alvo instanciado para ser feito a busca do campo
+	 *  @param f - Nome do campo a ser buscado
+	 *  @return Object - Retorna o valor obtido do campo
+	 *  @example ClassFunction.getValueField(new Pessoa(1, "Matheus"), "id")
+	 *  @result 1
+	 */
+	public static Object getValueField(Object obj, String f) {
+		try {
+			Field field = obj.getClass().getDeclaredField(f);
+			field.setAccessible(true);
+			return field.get(obj);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 }
