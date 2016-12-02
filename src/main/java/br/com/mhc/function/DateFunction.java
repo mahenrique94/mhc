@@ -48,25 +48,47 @@ public class DateFunction {
 	}
 	
 	/** @auth Matheus Castiglioni
+	 *  Dado uma data inicial e uma data final é feito o cálculo de dias
+	 *  @param begin - Data Inicial
+	 *  @param end - Data Final
+	 *  @return result - Dias cálculados de acordo com as datas
+	 *  @example DateFunction.getIntervalDaysBetweenCalendar(new GregorianCalendar(2016, 0, 1, 10, 0), new GregorianCalendar(2016, 0, 10, 13, 30));
+	 *  @result 9
+	 */
+	public static int getIntervalDaysBetweenCalendar(Calendar begin, Calendar end) {
+		int result = 0;
+		if (begin != null && end != null) {
+			final int FATOR_CONVERSAO = 3600;
+			int hours = 24;
+			double seconds = 0.0;
+			seconds = (end.getTimeInMillis() / 1000) - (begin.getTimeInMillis() / 1000);
+			result = ((int) (seconds/ FATOR_CONVERSAO) / hours);			
+		}
+		return result;
+	}
+	
+	/** @auth Matheus Castiglioni
 	 *  Dado uma data inicial e uma data final é feito o cálculo de horas da data
 	 *  @param begin - Data Inicial
 	 *  @param end - Data Final
-	 *  @return result - Horas e minutos cálculos de acordo com as datas
+	 *  @return result - Horas e minutos cálculados de acordo com as datas
 	 *  @example DateFunction.getIntervalHoursMinutesBetweenCalendar(new GregorianCalendar(2016, 0, 1, 10, 0), new GregorianCalendar(2016, 0, 1, 13, 30));
 	 *  @result 3.3
 	 */
 	public static double getIntervalHoursMinutesBetweenCalendar(Calendar begin, Calendar end) {
 		DecimalFormat df = new DecimalFormat("0.##");
-		final int FATOR_CONVERSAO = 3600;
-		double hours = 0.0;
-		double minutes = 0.0;
-		double seconds = 0.0;
 		double result = 0.0;
-		seconds = (end.getTimeInMillis() / 1000) - (begin.getTimeInMillis() / 1000);
-		hours = (int) (seconds / FATOR_CONVERSAO);
-		minutes = (seconds  / FATOR_CONVERSAO) - hours;
-		minutes = (minutes * 60) / 100;
-		result = hours + minutes;
+		if (begin != null && end != null) {
+			final int FATOR_CONVERSAO = 3600;
+			double hours = 0.0;
+			double minutes = 0.0;
+			double seconds = 0.0;
+			seconds = (end.getTimeInMillis() / 1000) - (begin.getTimeInMillis() / 1000);
+			hours = (int) (seconds / FATOR_CONVERSAO);
+			minutes = (seconds  / FATOR_CONVERSAO) - hours;
+			minutes = (minutes * 60) / 100;
+			result = hours + minutes;
+		}
 		return Double.parseDouble(df.format(result));
 	}
 	
