@@ -9,6 +9,9 @@ import java.io.OutputStream;
 
 import javax.annotation.processing.FilerException;
 
+/** @auth Matheus Castiglioni
+ *  Classe utilizada para fazer upload e download de arquivos
+ */
 public class Arquive {
 
 	private static String PATH = "";
