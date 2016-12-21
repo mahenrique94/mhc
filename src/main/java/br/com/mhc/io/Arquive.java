@@ -41,7 +41,7 @@ public class Arquive {
 	}
 	
 	private File create(final String paste, final String fileName) {
-		return new File(String.format("%s/%s/%s", PATH, paste, fileName));
+		return new File(String.format("%s/%s/%s", PATH, paste.replaceAll("[\\-]", "/"), fileName));
 	}
 	
 	private File find(final File file) {
