@@ -1,19 +1,22 @@
 package br.com.mhc.cpf;
 
-public abstract class CPFValidator {
+public class CPFValidator {
 
-	private static final Digit DIGIT = new Digit();
-
-	public static boolean isValid(CPF cpf) {
-		int firstDigit = DIGIT.calculateDigit(cpf.getNumbersToFirstDigit());
-		if (!DIGIT.isValid(firstDigit, cpf.getFirstDigit()))
-			return false;
+	public boolean isValid(CPF cpf) {
+		int firstDigit = calculateDigit(cpf.getNumbersToFirstDigit());
+		int secondDigit = calculateDigit(cpf.getNumbersToSecondDigit());
 		
-		int secondDigit = DIGIT.calculateDigit(cpf.getNumbersToSecondDigit());
-		if (!DIGIT.isValid(secondDigit, cpf.getSecondDigit()))
-			return false;
-		
-		return true;
+		return (firstDigit == cpf.getFirstDigit()) && (secondDigit == cpf.getSecondDigit());
+	}
+	
+	private int calculateDigit(String[] numbers) {
+		int total = 0;
+		int index = numbers.length;
+		for (int i = 0; i < (numbers.length - 1); i++) {
+			total += Integer.parseInt(numbers[i]) * index;
+			index--;
+		}
+		return (total * 10) % 11;
 	}
 	
 }
