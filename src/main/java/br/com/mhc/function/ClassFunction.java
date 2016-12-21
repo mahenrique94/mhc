@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
  *  Classe responsável por definir todas as funções realizadas com Classes,
  *  todos os métodos são estáticos para que não haja a necessidade de instanciar a classe para usá-los
  */
-public class ClassFunction {
+public abstract class ClassFunction {
 
 	/** @auth Matheus Castiglioni
 	 *  Busca o tipo primitivo do field passado como parâmetro, caso o field seja um objeto ele navega no objeto até

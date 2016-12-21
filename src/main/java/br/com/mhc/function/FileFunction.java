@@ -7,7 +7,7 @@ import java.io.IOException;
  *  Classe responsável por definir todas as funções realizadas com Arquivos,
  *  todos os métodos são estáticos para que não haja a necessidade de instanciar a classe para usá-los
  */
-public class FileFunction {
+public abstract class FileFunction {
 
 	/** @auth Matheus Castiglioni
 	 *  Verifica se existe uma determinada pasta ou arquivo
@@ -26,12 +26,10 @@ public class FileFunction {
 	 *  @param s - String referente a pasta ou arquivo que estamos querendo criar
 	 *  @return result - True ou False se a pasta ou arquivo foi criado ou não
 	 *  @example FileFunction.create("/Users/matheus/Desktop/Arquivo/Upload/teste.txt");
-	 *  @result true
 	 */
-	public static boolean create(String s) {
+	public static void create(String s) {
 		String[] split = s.split("/");
 		StringBuilder path = new StringBuilder("");
-		boolean result = false;
 		for(int i = 1; i < split.length; i++) {
 			path.append("/");
 			path.append(split[i]);
@@ -39,17 +37,16 @@ public class FileFunction {
 				File file = new File(path.toString());
 				if (split[i].contains(".")) {
 					try {
-						result = file.createNewFile();
+						file.createNewFile();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				} else {
-					result = file.mkdir();
+					file.mkdir();
 				}
 			}
 		}
-		return result;
 	}
 	
 }

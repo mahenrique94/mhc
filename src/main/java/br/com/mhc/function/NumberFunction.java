@@ -6,7 +6,7 @@ import br.com.mhc.cript.Function;
  *  Classe responsável por definir todas as funções realizadas com Números,
  *  todos os métodos são estáticos para que não haja a necessidade de instanciar a classe para usá-los
  */
-public class NumberFunction {
+public abstract class NumberFunction {
 
 	/** @auth Matheus Castiglioni
 	 *  Pega um número no formato binário e converte o mesmo para inteiro

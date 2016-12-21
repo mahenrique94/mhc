@@ -1,10 +1,23 @@
 package br.com.mhc.function;
 
+import java.text.ParseException;
+
+import javax.swing.text.MaskFormatter;
+
 /** @auth Matheus Castiglioni
  *  Classe responsável por definir todas as funções realizadas com String's,
  *  todos os métodos são estáticos para que não haja a necessidade de instanciar a classe para usá-los
  */
-public class StringFunction {
+public abstract class StringFunction {
+	
+	/** @auth Matheus Castiglioni
+	 *  Transforma um char em String
+	 *  @param c - Char a ser transformado em String
+	 *  @example StringFunction.charToString("C");
+	 */
+	public static String charToString(char c) {
+		return String.valueOf(c);
+	}
 	
 	/** @auth Matheus Castiglioni
 	 *  Pega uma determinada palavra e devolve a mesma com sua primeira letra em Maiúscula
@@ -15,6 +28,26 @@ public class StringFunction {
 	 */
 	public static String firstLetterUpper(String s) {
 		return s.substring(0, 1).toUpperCase().concat(s.substring(1));
+	}
+	
+	/** @auth Matheus Castiglioni
+	 *  Pega uma determinada string e formata de acordo com a mascára passada
+	 *  @param mask - Formato para a string
+	 *  @return s - String á ser formatada
+	 *  @example StringFunction.format("###.###.###-##", "11111111111");
+	 *  @result "111.111.111-11"
+	 */
+	public static String format(String mask, String s) {
+		try {
+			MaskFormatter mf = new MaskFormatter(mask);
+			mf.setValueContainsLiteralCharacters(false);
+			return mf.valueToString(s).toString();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Não foi possível formtar a String: " + s + " no formato: " + mask);
+		}
+		return null;
 	}
 	
 	/** @auth Matheus Castiglioni
@@ -47,6 +80,23 @@ public class StringFunction {
 			builder.append(string);	
 		}
 		return builder.toString();
+	}
+	
+	/** @auth Matheus Castiglioni
+	 *  Transforma uma substring em array
+	 *  @param s - String a ser retirado os espaços
+	 *  @param begin - Inicio da substring
+	 *  @param end - Fim do substring
+	 *  @return array - Array baseado no substring
+	 *  @example StringFunction.substringToArray("Matheus", 0, 6);
+	 *  @result [M, a, t, h, e, u, s]
+	 */
+	public static String[] substringToArray(String s, int begin, int end) {
+		String[] array = new String[end + 1];
+		for (int i = begin; i < end; i++) {
+			array[i] = charToString(s.charAt(i));
+		}
+		return array;
 	}
 
 	/** @auth Matheus Castiglioni

@@ -15,7 +15,7 @@ import javax.annotation.processing.FilerException;
 public class Arquive {
 
 	private static String PATH = "";
-	private final static int FILE_SIZE = 1024 * 8;
+	private final static int FILE_MAX_SIZE = 1024 * 8;
 	
 	public Arquive() {
 		// TODO Auto-generated constructor stub
@@ -57,7 +57,7 @@ public class Arquive {
 	}
 	
 	private void save(final InputStream to, final OutputStream from) {
-		byte[] bytes = new byte[FILE_SIZE];
+		byte[] bytes = new byte[FILE_MAX_SIZE];
 		int i = 0;
 		try {
 			while((i = to.read(bytes)) >= 0) {
