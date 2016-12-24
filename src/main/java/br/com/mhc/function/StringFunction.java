@@ -1,6 +1,8 @@
 package br.com.mhc.function;
 
 import java.text.ParseException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.text.MaskFormatter;
 
@@ -48,6 +50,21 @@ public abstract class StringFunction {
 			System.out.println("Não foi possível formtar a String: " + s + " no formato: " + mask);
 		}
 		return null;
+	}
+	
+	
+	/** @auth Matheus Castiglioni
+	 *  Pega uma determinada String e verifica se contém a regex passada
+	 *  @param regex - Expressão regular a ser processada
+	 *  @param s - String a ser verificada
+	 *  @return builder - String já invertida
+	 *  @example StringFunction.isMatcher("([1]{11})", "11111111111");
+	 *  @result true
+	 */
+	public static boolean isMatcher(String regex, String s) {
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(s);
+		return matcher.find();
 	}
 	
 	/** @auth Matheus Castiglioni
