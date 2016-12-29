@@ -5,7 +5,6 @@
 	<artifactId>mhc</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
-
 	<name>mhc</name>
 	<url>http://maven.apache.org</url>
 
@@ -14,43 +13,50 @@
 	</properties>
 
 	<dependencies>
+	
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>4.12</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>5.2.1.Final</version>
+			<version>5.3.4.Final</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>1.1.0.Final</version>
 		</dependency>
+		
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.3.5.Final</version>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-entitymanager</artifactId>
+		    <version>4.3.11.Final</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.36</version>
+			<version>6.0.5</version>
 		</dependency>
+		
 		<dependency>
-		    <groupId>javax.el</groupId>
-		    <artifactId>el-api</artifactId>
-		    <version>2.2</version>
-		    <scope>provided</scope>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<version>3.0.0</version>
+			<scope>provided</scope>
 		</dependency>
+		
 		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>javax.mail-api</artifactId>
-			<version>1.5.5</version>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>mail</artifactId>
+		    <version>1.4.7</version>
 		</dependency>
+		
 	</dependencies>
 	
 </project>
