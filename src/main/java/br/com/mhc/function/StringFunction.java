@@ -29,7 +29,24 @@ public abstract class StringFunction {
 	 *  @result "Matheus"
 	 */
 	public static String firstLetterUpper(String s) {
-		return s.substring(0, 1).toUpperCase().concat(s.substring(1));
+		return s.substring(0, 1).toUpperCase().concat(s.substring(1).toLowerCase());
+	}
+	
+	/** @auth Matheus Castiglioni
+	 *  Pega uma determinada frase e devolve a mesma com cada palavra com sua primeira letra em Maiúscula
+	 *  @param s - Frase alvo a ser devolvida as palavras com a primeira letra em Maiúscula
+	 *  @return builder - Frase processada
+	 *  @example StringFunction.firstLetterUpperPhrase("matheus henrique");
+	 *  @result "Matheus Henrique"
+	 */
+	public static String firstLetterUpperPhrase(String s) {
+		StringBuilder builder = new StringBuilder();
+		String[] split = s.split(" ");
+		for(int i = 0; i < split.length; i++) {
+			builder.append(firstLetterUpper(split[i]));
+			builder.append(" ");
+		}
+		return builder.toString();
 	}
 	
 	/** @auth Matheus Castiglioni
