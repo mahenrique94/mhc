@@ -14,7 +14,7 @@ public interface Validator {
 	}
 	
 	default boolean repeatNumbers(String document) {
-		return StringFunction.isMatcher(Pattern.CPF.getRepeat(), document);
+		return StringFunction.isMatcher(Pattern.CPF.getRepeat(), document) || StringFunction.isMatcher(Pattern.CNPJ.getRepeat(), document);
 	}
 	
 }
