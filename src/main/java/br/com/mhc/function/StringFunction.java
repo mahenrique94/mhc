@@ -29,7 +29,9 @@ public abstract class StringFunction {
 	 *  @result "Matheus"
 	 */
 	public static String firstLetterUpper(String s) {
-		return s.substring(0, 1).toUpperCase().concat(s.substring(1).toLowerCase());
+		if (!s.equals(""))
+			return s.substring(0, 1).toUpperCase().concat(s.substring(1).toLowerCase());
+		return s;
 	}
 	
 	/** @auth Matheus Castiglioni
