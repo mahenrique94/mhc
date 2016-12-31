@@ -46,10 +46,9 @@ public abstract class StringFunction {
 			return mf.valueToString(s).toString();
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("Não foi possível formtar a String: " + s + " no formato: " + mask);
+			System.out.println("String [" + s + "] ja esta formatada");
+			return s;
 		}
-		return null;
 	}
 	
 	
