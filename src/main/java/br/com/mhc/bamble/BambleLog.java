@@ -1,8 +1,7 @@
 package br.com.mhc.bamble;
 
 import java.text.SimpleDateFormat;
-
-import com.ibm.icu.util.Calendar;
+import java.util.Calendar;
 
 public abstract class BambleLog {
 	
