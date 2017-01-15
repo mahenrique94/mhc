@@ -2,6 +2,7 @@ package br.com.mhc.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ import javax.persistence.Table;
 )
 @Entity
 @Table(name = "pessoa")
-public class Pessoa implements Serializable {
+public class Pessoa implements Serializable, Cloneable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +27,7 @@ public class Pessoa implements Serializable {
 	private Integer idade;
 	private String sexo;
 	private Calendar datacadastro;
+	List<PessoaEndereco> enderecos;
 	
 	public Pessoa() {
 		// TODO Auto-generated constructor stub
@@ -41,6 +43,14 @@ public class Pessoa implements Serializable {
 		this.idade = idade;
 		this.sexo = sexo;
 		this.datacadastro = datacadastro;
+	}
+	public Pessoa(Integer id, String nome, Integer idade, String sexo, Calendar datacadastro, List<PessoaEndereco> enderecos) {
+		this.id = id;
+		this.nome = nome;
+		this.idade = idade;
+		this.sexo = sexo;
+		this.datacadastro = datacadastro;
+		this.enderecos = enderecos;
 	}
 
 	public Integer getId() {
@@ -72,6 +82,23 @@ public class Pessoa implements Serializable {
 	}
 	public void setDatacadastro(Calendar datacadastro) {
 		this.datacadastro = datacadastro;
+	}
+	public List<PessoaEndereco> getEnderecos() {
+		return enderecos;
+	}
+	public void setEnderecos(List<PessoaEndereco> enderecos) {
+		this.enderecos = enderecos;
+	}
+	
+	@Override
+	public Object clone() {
+		// TODO Auto-generated method stub
+		try {
+			return super.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException(e);
+		}
 	}
 	
 }
