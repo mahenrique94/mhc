@@ -22,8 +22,7 @@ import com.ibm.icu.text.SimpleDateFormat;
  */
 public class Bamble {
 
-	public Bamble(Properties props) {
-		// TODO Auto-generated constructor stub
+	public void start(Properties props) {
 		Store store = BambleConnect.connect(props);
 		Folder folder = BambleFolder.getFolder(props.getProperty("bamble.paste"), store);
 		BambleMessages.readingMessages(folder, true, props.getProperty("bamble.fileType"), props.getProperty("bamble.path"));

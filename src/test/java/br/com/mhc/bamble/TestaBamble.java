@@ -14,7 +14,7 @@ public class TestaBamble {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				new Bamble(props);
+				new Bamble().start(props);
 			}
 		}, 0, Integer.parseInt(props.getProperty("bamble.sleep")));
 	}
