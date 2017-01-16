@@ -15,7 +15,7 @@ public abstract class BambleFile {
 			DataHandler handler = body.getDataHandler();
 			String fileName = handler.getName();
 			if (fileName != null) {
-				System.out.println("[Anexo]: " + fileName);
+				BambleLog.info("Anexo", fileName);
 				if (isFileWish(type, fileName)) {
 					save(path, handler);
 				}
@@ -32,6 +32,9 @@ public abstract class BambleFile {
 	}
 	
 	private static void save(String path, DataHandler handler) {
+		BambleLog.log("SALVANDO ANEXO");
+		BambleLog.info("Pasta", path);
+		BambleLog.info("Nome do Arquivo", handler.getName());
 		Arquive a = new Arquive();
 		try {
 			a.upload(handler.getInputStream(), path, handler.getName());

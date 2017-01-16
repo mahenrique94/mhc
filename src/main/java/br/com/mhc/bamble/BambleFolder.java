@@ -9,7 +9,7 @@ public abstract class BambleFolder {
 	public static Folder getFolder(String folder, Store store) {
 		Folder f = null;
 		try {
-			BambleLog.log("[BUSCANDO A PASTA NO EMAIL]");
+			BambleLog.log("BUSCANDO A PASTA NO EMAIL");
 			f = store.getFolder(folder);
 			f.open(Folder.READ_WRITE);
 		} catch (MessagingException e) {

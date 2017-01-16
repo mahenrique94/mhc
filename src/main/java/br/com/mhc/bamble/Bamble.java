@@ -32,7 +32,7 @@ public class Bamble {
 	public static Properties getProperties(File properties) {
 		Properties p = new Properties();
 		try {
-			BambleLog.log("[BUSCANDO ARQUIVO PROPERTIES PARA ACESSAR O EMAIL]");
+			BambleLog.log("BUSCANDO ARQUIVO PROPERTIES PARA ACESSAR O EMAIL");
 			p.load(new FileInputStream(properties));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

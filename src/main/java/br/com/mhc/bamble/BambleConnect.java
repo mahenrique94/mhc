@@ -16,7 +16,7 @@ public abstract class BambleConnect {
 		Store store = null;
 		session = Session.getInstance(new Properties());
 		try {
-			BambleLog.log("[ACESSANDO O EMAIL]");
+			BambleLog.log("ACESSANDO O EMAIL");
 			store = session.getStore(getUrl(p));
 			store.connect();
 		} catch (MessagingException e) {
@@ -28,7 +28,7 @@ public abstract class BambleConnect {
 	
 	public static void disconnect(Folder folder, Store store) {
 		try {
-			BambleLog.log("[FECHANDO PASTA E STORE DO EMAIL]");
+			BambleLog.log("FECHANDO PASTA E STORE DO EMAIL");
 			folder.close(true);
 			store.close();
 		} catch (MessagingException e) {

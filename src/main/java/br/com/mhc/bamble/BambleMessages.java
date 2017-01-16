@@ -20,11 +20,11 @@ public class BambleMessages {
 		Message[] messages = findMessages(folder, onlyUnread);
 		for(int i = 0; i < messages.length; i++) {
 			try {
-				BambleLog.log("[LENDO EMAIL]");
-				System.out.println("[Assunto]: " + messages[i].getSubject());
-				System.out.println("[De]: " + InternetAddress.toString(messages[i].getFrom()));
-				System.out.println("[Para]: " + InternetAddress.toString(messages[i].getRecipients(Message.RecipientType.TO)));
-				System.out.println("[Data]: " + new SimpleDateFormat("dd/MM/yyyy HH:mm").format(messages[i].getSentDate()));
+				BambleLog.log("LENDO EMAIL");
+				BambleLog.info("Assunto", messages[i].getSubject());
+				BambleLog.info("De", InternetAddress.toString(messages[i].getFrom()));
+				BambleLog.info("Para", InternetAddress.toString(messages[i].getRecipients(Message.RecipientType.TO)));
+				BambleLog.info("Data", new SimpleDateFormat("dd/MM/yyyy HH:mm").format(messages[i].getSentDate()));
 				readMessage(messages[i], type, path);
 			} catch (MessagingException e) {
 				// TODO Auto-generated catch block
@@ -35,7 +35,7 @@ public class BambleMessages {
 
 	private static Message[] findMessages(Folder folder, boolean onlyUnread) {
 		try {
-			BambleLog.log("[BUSCANDO EMAILS]");
+			BambleLog.log("BUSCANDO EMAILS");
 			if (onlyUnread)
 				return folder.search(new FlagTerm(new Flags(Flags.Flag.SEEN), false));
 			else
@@ -57,7 +57,7 @@ public class BambleMessages {
 					String s = body.getDisposition();
 					DataHandler handler = body.getDataHandler();
 					if (body.getContentType().toLowerCase().startsWith("text/plain"))
-						System.out.println("[Mensagem]: " + body.getContent().toString().trim());
+						BambleLog.info("Mensagem", body.getContent().toString().trim());
 					else
 						BambleFile.download(type, path, body);
 				}
@@ -74,7 +74,7 @@ public class BambleMessages {
 	
 	private static void setMessageAsRead(Message message) {
 		try {
-			BambleLog.log("[MARCANDO EMAIL COMO LIDO]");
+			BambleLog.log("MARCANDO EMAIL COMO LIDO");
 			message.setFlag(Flags.Flag.SEEN, true);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
