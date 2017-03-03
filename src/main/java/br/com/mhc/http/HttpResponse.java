@@ -6,14 +6,8 @@ import java.net.HttpURLConnection;
 
 public class HttpResponse {
 
-	public InputStream get(HttpURLConnection con) {
-		try {
-			return con.getInputStream();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+	public InputStream get(HttpURLConnection con) throws IOException {
+		return con.getInputStream();
 	}
 	
 }
