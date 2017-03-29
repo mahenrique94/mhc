@@ -56,12 +56,12 @@ public class Arquive {
 		return file;
 	}
 	
-	private void save(final InputStream to, final OutputStream from) {
+	private void save(final InputStream from, final OutputStream to) {
 		byte[] bytes = new byte[FILE_MAX_SIZE];
 		int i = 0;
 		try {
-			while((i = to.read(bytes)) >= 0) {
-				from.write(bytes, 0, i);
+			while((i = from.read(bytes)) >= 0) {
+				to.write(bytes, 0, i);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
