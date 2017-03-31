@@ -6,7 +6,8 @@ public abstract class CNPJCPF implements Document {
 	
 	private String cnpjCpf;
 	private Formatter formatter;
-	private Pattern pattern;
+	private String pattern;
+	private String mask;
 	private Validator validator;
 	
 	public String getCnpjCpf() {
@@ -21,11 +22,17 @@ public abstract class CNPJCPF implements Document {
 	public void setFormatter(Formatter formatter) {
 		this.formatter = formatter;
 	}
-	public Pattern getPattern() {
+	public String getPattern() {
 		return pattern;
 	}
-	public void setPattern(Pattern pattern) {
+	public void setPattern(String pattern) {
 		this.pattern = pattern;
+	}
+	public String getMask() {
+		return mask;
+	}
+	public void setMask(String mask) {
+		this.mask = mask;
 	}
 	public Validator getValidator() {
 		return validator;
@@ -43,7 +50,7 @@ public abstract class CNPJCPF implements Document {
 	@Override
 	public String format() {
 		// TODO Auto-generated method stub
-		return getFormatter().format(getPattern(), getCnpjCpf());
+		return getFormatter().format(getPattern(), getMask(), getCnpjCpf());
 	}
 
 	@Override

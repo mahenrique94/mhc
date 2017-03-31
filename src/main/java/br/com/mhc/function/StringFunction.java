@@ -58,18 +58,9 @@ public abstract class StringFunction {
 	 *  @example StringFunction.format("###.###.###-##", "11111111111");
 	 *  @result "111.111.111-11"
 	 */
-	public static String format(String mask, String s) {
-		try {
-			MaskFormatter mf = new MaskFormatter(mask);
-			mf.setValueContainsLiteralCharacters(false);
-			return mf.valueToString(s).toString();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			System.out.println("String [" + s + "] ja esta formatada");
-			return s;
-		}
+	public static String format(String pattern, String mask, String s) {
+		return s.replaceAll(pattern, mask);
 	}
-	
 	
 	/** @auth Matheus Castiglioni
 	 *  Pega uma determinada String e verifica se contém a regex passada

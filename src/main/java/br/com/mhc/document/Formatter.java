@@ -4,8 +4,8 @@ import br.com.mhc.function.StringFunction;
 
 public interface Formatter {
 
-	default String format(Pattern pattern, String document) {
-		return StringFunction.format(pattern.getPattern(), document);
+	default String format(String pattern, String mask, String document) {
+		return StringFunction.format(pattern, mask, document);
 	}
 	
 	default String unformat(String document) {
