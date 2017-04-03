@@ -33,13 +33,13 @@ public abstract class CTEMDFENFE implements DocumentEletronic {
 	@Override
 	public int getMonth() {
 		// TODO Auto-generated method stub
-		return Integer.parseInt(getChave().substring(2, 4));
+		return Integer.parseInt(getChave().substring(4, 6));
 	}
 	
 	@Override
 	public int getYear() {
 		// TODO Auto-generated method stub
-		return Integer.parseInt(getChave().substring(4, 6));
+		return Integer.parseInt(getChave().substring(2, 4));
 	}
 
 	@Override
