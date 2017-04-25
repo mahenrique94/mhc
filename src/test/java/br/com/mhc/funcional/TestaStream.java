@@ -14,7 +14,6 @@ public class TestaStream {
 		alunos.stream()
 			  .sorted((s1, s2) -> s1.compareTo(s2))
 			  .filter(s -> s.length() > 5)
-			  .collect(Collectors.toList())
 			  .forEach(System.out::println);
 	}
 	

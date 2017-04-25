@@ -97,7 +97,7 @@ public abstract class DateFunction {
 	 *  @param date - Data alvo a ser adicionada os dias
 	 *  @param days - Quantidade de dias a ser adicionados na data
 	 *  @return data - Data com os dias adicionados
-	 *  @example DateFunction.setDaysInDate(new GregorianCalendar(1994, 4, 25).getInstance(), 5);
+	 *  @example DateFunction.setDaysInDate(new GregorianCalendar(1994, 4, 25), 5);
 	 *  @result "1994-05-30"
 	 */
 	public static Calendar setDaysInDate(Calendar date, int days) {
