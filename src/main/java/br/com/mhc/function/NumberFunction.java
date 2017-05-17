@@ -1,7 +1,5 @@
 package br.com.mhc.function;
 
-import br.com.mhc.cript.Function;
-
 /** @auth Matheus Castiglioni
  *  Classe responsável por definir todas as funções realizadas com Números,
  *  todos os métodos são estáticos para que não haja a necessidade de instanciar a classe para usá-los
@@ -17,7 +15,7 @@ public abstract class NumberFunction {
 	 */
 	public static int fromBinaryToDecimal(String s) {
 		int result = 0;
-		String reverse = Function.reverse(s);
+		String reverse = StringFunction.reverse(s);
 		for (int i = 0; i < s.length(); i++) {
 			char c = reverse.charAt(i);
 			int bit = Integer.parseInt(String.valueOf(c));
