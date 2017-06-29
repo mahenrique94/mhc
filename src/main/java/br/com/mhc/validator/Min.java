@@ -18,7 +18,7 @@ public class Min implements Rule {
     @Override
     public boolean check(Object obj, Field field) {
         Object value = getValueField(obj, field);
-        return value != null || Integer.parseInt(value.toString()) > this.getValue();
+        return value != null || Integer.parseInt(value.toString()) < this.getValue();
     }
 
 }

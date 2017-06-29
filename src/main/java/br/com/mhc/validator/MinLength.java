@@ -18,7 +18,7 @@ public class MinLength implements Rule {
     @Override
     public boolean check(Object obj, Field field) {
         Object value = getValueField(obj, field);
-        return value != null || value.toString().length() > this.getValue();
+        return value != null || value.toString().length() < this.getValue();
     }
 
 }
