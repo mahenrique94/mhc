@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="573746e2-4bdf-478a-95c0-247b31e72073" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/br/com/mhc/validator/MaxLength.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/br/com/mhc/validator/MinLength.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/br/com/mhc/model/validator/PessoaValidator.java" afterPath="$PROJECT_DIR$/src/main/java/br/com/mhc/model/validator/PessoaValidator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/br/com/mhc/validator/ValidatorTemplate.java" afterPath="$PROJECT_DIR$/src/main/java/br/com/mhc/validator/ValidatorTemplate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/br/com/mhc/validator/TestaValidator.java" afterPath="$PROJECT_DIR$/src/test/java/br/com/mhc/validator/TestaValidator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/br/com/mhc/validator/Max.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/br/com/mhc/validator/Min.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/validator.properties" afterPath="$PROJECT_DIR$/validator.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,8 +20,8 @@
       <file leaf-file-name="TestaValidator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/br/com/mhc/validator/TestaValidator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="34" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="50" />
+            <state relative-caret-position="180">
+              <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -32,14 +29,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PessoaValidator.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PessoaValidator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/br/com/mhc/model/validator/PessoaValidator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="89" lean-forward="false" selection-start-line="12" selection-start-column="89" selection-end-line="12" selection-end-column="89" />
+            <state relative-caret-position="195">
+              <caret line="13" column="32" lean-forward="true" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="validator.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/validator.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="114" lean-forward="false" selection-start-line="8" selection-start-column="114" selection-end-line="8" selection-end-column="114" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -70,8 +77,6 @@
         <option value="$PROJECT_DIR$/src/main/java/br/com/mhc/function/FileFunction.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/mhc/bamble/Bamble.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/mhc/model/validator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/br/com/mhc/validator/Max.java" />
-        <option value="$PROJECT_DIR$/validator.properties" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/mhc/validator/ValidatorException.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/mhc/validator/Required.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/mhc/validator/ValidatorParameters.java" />
@@ -89,6 +94,9 @@
         <option value="$PROJECT_DIR$/src/test/java/br/com/mhc/validator/TestaValidator.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/mhc/model/validator/PessoaValidator.java" />
         <option value="$PROJECT_DIR$/src/main/java/br/com/mhc/validator/MinLength.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/com/mhc/validator/Max.java" />
+        <option value="$PROJECT_DIR$/src/main/java/br/com/mhc/validator/Min.java" />
+        <option value="$PROJECT_DIR$/validator.properties" />
       </list>
     </option>
   </component>
@@ -813,12 +821,12 @@
       <option name="presentableId" value="Default" />
       <updated>1495019811558</updated>
       <workItem from="1495019812934" duration="155000" />
-      <workItem from="1498754271783" duration="5986000" />
+      <workItem from="1498754271783" duration="6296000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6141000" />
+    <option name="totallyTimeSpent" value="6451000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
@@ -908,30 +916,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/mhc/validator/Max.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/mhc/validator/Min.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/validator.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1087,10 +1071,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/mhc/validator/Max.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="20" column="66" lean-forward="false" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/mhc/validator/Min.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="20" column="67" lean-forward="false" selection-start-line="20" selection-start-column="67" selection-end-line="20" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/br/com/mhc/model/Pessoa.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/br/com/mhc/validator/TestaValidator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="34" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="50" />
+        <state relative-caret-position="180">
+          <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1099,11 +1107,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/br/com/mhc/model/validator/PessoaValidator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="89" lean-forward="false" selection-start-line="12" selection-start-column="89" selection-end-line="12" selection-end-column="89" />
+        <state relative-caret-position="195">
+          <caret line="13" column="32" lean-forward="true" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/validator.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="114" lean-forward="false" selection-start-line="8" selection-start-column="114" selection-end-line="8" selection-end-column="114" />
+          <folding />
         </state>
       </provider>
     </entry>
