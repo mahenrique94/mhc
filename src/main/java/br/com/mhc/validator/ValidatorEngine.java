@@ -28,10 +28,20 @@ public class ValidatorEngine implements Validator {
                 List<Rule> rules = takeRules(field);
                 rules.forEach(rule -> {
                     if (rule.check(getObj(), field))
-                        ValidatorLog.print(rule.getMessage(), field, rule);
+                        ValidatorLog.print(getMessage(rule), field, rule);
                 });
             }
         }
+    }
+
+    private ValidatorMessage getMessage(Rule rule) {
+        if (hasMessage(rule))
+            return getValidatorRules().messages().get(rule.getClass().getSimpleName().toLowerCase());
+        return rule.getMessage();
+    }
+
+    private boolean hasMessage(Rule rule) {
+        return getValidatorRules().messages() != null && getValidatorRules().messages().containsKey(rule.getClass().getSimpleName().toLowerCase());
     }
 
     private boolean hasValidation(Field field) {

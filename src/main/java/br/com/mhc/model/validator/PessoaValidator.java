@@ -11,7 +11,7 @@ public class PessoaValidator extends ValidatorTemplate implements ValidatorRule 
     @Override
     public Map<String, List<Rule>> rules() {
         addRule("nome", Arrays.asList(new Required()));
-        return getRules();
+        return super.getRules();
     }
 
 }

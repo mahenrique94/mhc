@@ -10,10 +10,10 @@ public abstract class ValidatorTemplate {
     private Map<String, List<Rule>> rules = new HashMap<String, List<Rule>>();
     private Map<String, ValidatorMessage> messages = new HashMap<String, ValidatorMessage>();
 
-    public Map<String, List<Rule>> getRules() {
+    protected Map<String, List<Rule>> getRules() {
         return Collections.unmodifiableMap(this.rules);
     }
-    public Map<String, ValidatorMessage> getMessages() {
+    protected Map<String, ValidatorMessage> getMessages() {
         return Collections.unmodifiableMap(this.messages);
     }
 
