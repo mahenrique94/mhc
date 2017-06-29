@@ -3,7 +3,7 @@ package br.com.mhc.validator;
 public enum ValidatorParameters {
 
     PROPERTIES_FILE("validator.properties"),
-    PROPERTIES_ALIAS("validator.field.");
+    PROPERTIES_ALIAS("validator.field");
 
     private String s;
 

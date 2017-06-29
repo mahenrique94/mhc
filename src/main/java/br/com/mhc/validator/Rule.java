@@ -14,7 +14,11 @@ public interface Rule {
     }
 
     default ValidatorMessage getMessage() {
-        return new ValidatorMessage(String.format("validator.field.%s", getClass().getSimpleName().toLowerCase()));
+        return new ValidatorMessage(String.format("%s.%s", ValidatorParameters.PROPERTIES_ALIAS.get(), getClass().getSimpleName().toLowerCase()));
+    }
+
+    default Integer getValue() {
+        return null;
     }
 
     public boolean check(Object obj, Field field);

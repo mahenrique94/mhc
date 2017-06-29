@@ -5,9 +5,10 @@ import java.util.Map;
 
 public interface ValidatorRule {
 
-    public void setRules();
-    public void setMessages();
-    Map<String, List<Rule>> getRules();
-    Map<String, ValidatorMessage> getMessages();
+    default public Map<String, ValidatorMessage> messages() {
+        return null;
+    }
+
+    public Map<String, List<Rule>> rules();
 
 }

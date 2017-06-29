@@ -6,16 +6,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class PessoaValidator extends ValidatorBarrel implements ValidatorRule {
+public class PessoaValidator extends ValidatorTemplate implements ValidatorRule {
 
     @Override
-    public void setRules() {
+    public Map<String, List<Rule>> rules() {
         addRule("nome", Arrays.asList(new Required()));
-    }
-
-    @Override
-    public void setMessages() {
-
+        return getRules();
     }
 
 }

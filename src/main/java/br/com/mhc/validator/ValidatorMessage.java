@@ -5,7 +5,7 @@ import br.com.mhc.function.FileFunction;
 import java.io.File;
 import java.util.Properties;
 
-public class ValidatorMessage {
+public class ValidatorMessage implements Message {
 
     private String message;
 
@@ -13,17 +13,18 @@ public class ValidatorMessage {
         this.message = message;
     }
 
+    @Override
     public String getMessage() {
         if (isFromProperties())
             return fromProperties();
         return fromString();
     }
 
-    public String fromString() {
+    private String fromString() {
         return this.message;
     }
 
-    public String fromProperties() {
+    private String fromProperties() {
         Properties properties = FileFunction.openProperties(new File(ValidatorParameters.PROPERTIES_FILE.get()));
         return properties.getProperty(this.message);
     }
