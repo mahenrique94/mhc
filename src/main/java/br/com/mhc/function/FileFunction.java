@@ -1,7 +1,12 @@
 package br.com.mhc.function;
 
+import br.com.mhc.bamble.BambleLog;
+
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Properties;
 
 /** @auth Matheus Castiglioni
  *  Classe responsável por definir todas as funções realizadas com Arquivos,
@@ -47,6 +52,26 @@ public abstract class FileFunction {
 				}
 			}
 		}
+	}
+
+	/** @auth Matheus Castiglioni
+	 *  Abre um determino arquivo properties
+	 *  @param p - Um File que representa o arquivo properties
+	 *  @return prop - Arquivo properties aberto
+	 *  @example FileFunction.openProperties("exemplo.properties");
+	 */
+	public static Properties openProperties(File p) {
+		Properties prop = new Properties();
+		try {
+			prop.load(new FileInputStream(p));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return prop;
 	}
 	
 }

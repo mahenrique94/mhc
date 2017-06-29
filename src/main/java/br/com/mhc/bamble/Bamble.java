@@ -15,6 +15,7 @@ import javax.mail.MessagingException;
 import javax.mail.Store;
 import javax.mail.internet.InternetAddress;
 
+import br.com.mhc.function.FileFunction;
 import com.ibm.icu.text.SimpleDateFormat;
 
 /** @auth Matheus Castiglioni
@@ -30,18 +31,8 @@ public class Bamble {
 	}
 	
 	public static Properties getProperties(File properties) {
-		Properties p = new Properties();
-		try {
-			BambleLog.log("BUSCANDO ARQUIVO PROPERTIES PARA ACESSAR O EMAIL");
-			p.load(new FileInputStream(properties));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return p;
+		BambleLog.log("BUSCANDO ARQUIVO PROPERTIES PARA ACESSAR O EMAIL");
+		return FileFunction.openProperties(properties);
 	}
 	
 }
