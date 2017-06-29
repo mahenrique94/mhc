@@ -17,14 +17,12 @@ public abstract class ValidatorTemplate {
         return Collections.unmodifiableMap(this.messages);
     }
 
-    public ValidatorTemplate addRule(String field, List<Rule> rules) {
+    public void addRule(String field, List<Rule> rules) {
         this.rules.put(field, rules);
-        return this;
     }
 
-    public ValidatorTemplate addMessage(String rule, ValidatorMessage message) {
+    public void addMessage(String rule, ValidatorMessage message) {
         this.messages.put(rule, message);
-        return this;
     }
 
 }
