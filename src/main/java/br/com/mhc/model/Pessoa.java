@@ -100,5 +100,14 @@ public class Pessoa implements Serializable, Cloneable {
 			throw new RuntimeException(e);
 		}
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return this.nome.equals(((Pessoa) obj).getNome());
+	}
+	
+	public static void ola() {
+		System.out.println("Ola");
+	}
 	
 }

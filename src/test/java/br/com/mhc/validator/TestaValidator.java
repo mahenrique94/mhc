@@ -8,7 +8,7 @@ import java.util.GregorianCalendar;
 public class TestaValidator {
 
     public static void main(String[] args) {
-        Pessoa p = new Pessoa(1, "Matheus Henrique", 23, "Masculino", new GregorianCalendar(2017, 4, 25));
+        Pessoa p = new Pessoa(1, null, 23, "Masculino", new GregorianCalendar(2017, 10, 25));
         Validator validator = new ValidatorEngine(new PessoaValidator(), p);
         validator.validate();
     }

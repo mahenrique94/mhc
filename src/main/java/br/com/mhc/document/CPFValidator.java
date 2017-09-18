@@ -11,7 +11,8 @@ public class CPFValidator implements Validator {
 			total += Integer.parseInt(numbers[i]) * index;
 			index--;
 		}
-		return (total * 10) % 11;
+		int digitVerificator = (total * 10) % 11;
+		return digitVerificator == 10 ? 0 : digitVerificator;
 	}
 
 }
