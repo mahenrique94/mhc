@@ -1,1 +1,5 @@
 /target/
+
+# Properties files
+bamble.properties
+email.properties
