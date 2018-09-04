@@ -79,7 +79,7 @@
 	
 	<build>
 		<finalName>mhc</finalName>
-		<outputDirectory>/Users/matheus/workspace/mhc/target/classes</outputDirectory>
+		<outputDirectory>/Users/matheus/workspace/Java/mhc/target/classes</outputDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
